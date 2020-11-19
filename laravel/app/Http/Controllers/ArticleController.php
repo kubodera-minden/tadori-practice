@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Article;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
