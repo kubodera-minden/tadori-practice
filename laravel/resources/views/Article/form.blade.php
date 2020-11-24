@@ -2,12 +2,19 @@
 <div class="container ops-main">
     <div class="row">
         <div class="col-md-6">
+            @if($target == 'store') <!-- 登録か編集かで分岐させる -->
+            <h2>記事作成</h2>
+            @elseif($target == 'update')
             <h2>記事修正</h2>
+            @endif   
         </div>
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-1">
-            @if($target == 'store') <!-- 登録か編集かで分岐させる -->
+
+            @include('article/message')
+
+            @if($target == 'store')
             <form action="/article/{{ $article->id }}" method="post">
             @elseif($target == 'update')
             <form action="/article/{{ $article->id }}" method="post">
