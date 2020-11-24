@@ -31,4 +31,12 @@ class ArticleController extends Controller
 
         return redirect("/article");
     }
+
+    public function destroy($id)
+    {
+        $article = Article::findOrFail($id);
+        $article->delete();
+    
+        return redirect("/article");
+    }
 }
