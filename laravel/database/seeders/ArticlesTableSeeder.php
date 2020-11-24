@@ -20,11 +20,17 @@ class ArticlesTableSeeder extends Seeder
         // サンプルレコードの投入
         DB::table('articles')->insert([
             ['title' => 'サンプル記事１',
-            'content' => 'これはサンプル記事１です'],
+            'content' => 'これはサンプル記事１です',
+            'created_at' => time(),
+            'updated_at' => time()],
             ['title' => 'サンプル記事２',
-            'content' => 'これはサンプル記事２です'],
+            'content' => 'これはサンプル記事２です',
+            'created_at' => time(),
+            'updated_at' => time()],
             ['title' => 'サンプル記事３',
-            'content' => 'これはサンプル記事３です']
+            'content' => 'これはサンプル記事３です',
+            'created_at' => time(),
+            'updated_at' => time(),]
         ]);
     }
 }
