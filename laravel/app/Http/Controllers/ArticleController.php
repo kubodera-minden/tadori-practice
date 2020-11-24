@@ -21,4 +21,14 @@ class ArticleController extends Controller
   
         return view('article/edit', compact('article'));
     }
+
+    public function update(Request $request, $id)
+    {
+        $article = Article::findOrFail($id);
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->save();
+
+        return redirect("/article");
+    }
 }
