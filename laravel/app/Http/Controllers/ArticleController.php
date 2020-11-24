@@ -15,6 +15,23 @@ class ArticleController extends Controller
         return view('article/index', compact('articles'));
     }
 
+    public function create()
+    {
+        // 空の$articleを渡す
+        $article = new Article();
+        return view('article/create', compact('article'));
+    }
+    
+    public function store(Request $request)
+    {
+        $article = new Article();
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->save();
+    
+        return redirect("/article");
+    }
+
     public function edit($id)
     {
         $article = Article::findOrFail($id);
