@@ -26,6 +26,7 @@ class ArticleRequest extends FormRequest
         return [
             'title' => 'required|string|max:50',
             'content' => 'required|string|min:5',
+            'thumbnail' => 'nullable',
         ];
     }
 }
