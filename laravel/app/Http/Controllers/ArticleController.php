@@ -16,6 +16,13 @@ class ArticleController extends Controller
         return view('article/index', compact('articles'));
     }
 
+    public function show($id)
+    {
+        $article = Article::findOrFail($id);
+
+        return view('article/show', compact('article'));
+    }
+
     public function create()
     {
         // 空の$articleを渡す

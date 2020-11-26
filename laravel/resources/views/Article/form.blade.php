@@ -33,7 +33,7 @@
                     <input type="file" name="image">
                 </div>
                 <div>
-                    <img src="{{ asset('storage/thumbnail/' . $article->thumbnail_path) }}">
+                    <img src="{{ asset('storage/thumbnail/' . $article->thumbnail_path) }}" class="img-thumbnail">
                 </div>
                 <button type="submit" class="btn btn-default">登録</button>
                 <a href="/article">戻る</a>
