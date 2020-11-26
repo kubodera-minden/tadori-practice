@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
+            <h1>Laravel標準のサンプルコンポーネントです</h1>
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Example Component</div>
@@ -21,3 +22,9 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+h1 {
+    color: red;
+}
+</style>

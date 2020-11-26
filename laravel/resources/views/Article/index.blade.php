@@ -1,6 +1,13 @@
 @extends('article/layout') <!-- layout.blade.phpを継承 -->
 @section('content')
 <div class="container ops-main">
+
+<div id="app">
+    <!-- デフォルトだとこの中ではvue.jsが有効 -->
+    <!-- example-component はLaravelに入っているサンプルのコンポーネント -->
+    <example-component></example-component>
+</div>
+
 <div class="row">
   <div class="col-md-12">
     <h3 class="ops-title">記事一覧</h3>
@@ -35,4 +42,5 @@
     <div><a href="/article/create" class="btn btn-default">新規作成</a></div>
   </div>
 </div>
+<script src=" {{ mix('js/app.js') }} "></script> 
 @endsection
