@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="/CSS/style.css">
 </head>
-<div class="navbar navbar-dark bg-primary navbar-fixed-top">
+<div class="navbar navbar-dark navbar-fixed-top logo">
   <a href="/article" class="navbar-brand">
     <img src="{{ asset('storage/enect_img/enect_logo.png') }}" class="">
   </a>
