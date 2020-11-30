@@ -6,6 +6,7 @@
     <!-- デフォルトだとこの中ではvue.jsが有効 -->
     <!-- example-component はLaravelに入っているサンプルのコンポーネント -->
     <example-component></example-component>
+    <article-index></article-index>
 </div>
 
 <script src=" {{ mix('js/app.js') }} "></script> 

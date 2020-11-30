@@ -14,24 +14,22 @@
                 <th class="text-center">内容</th>
                 <th class="text-center">削除</th>
             </tr>
-            @foreach($articles as $article)
-            <tr>
+            <tr v-for="(article,$index) in articles" :key="$index">
                 <td>
-                <a href="/article/{{ $article->id }}">{{ $article->id }}</a>
+                <a :href="`/article/` + article.id ">{{ article.id }}</a>
                 </td>
-                <td>{{ $article->title }}</td>
-                <td>{{ $article->content }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.content }}</td>
                 <td>
-                <form action="/article/{{ $article->id }}" method="post">
+                <!-- <form action="/article/{{ $article->id }}" method="post">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="btn btn-xs btn-danger" aria-label="Left Align"><span class="glyphicon glyphicon-trash"></span></button>
-                </form>
+                </form> -->
+                <button type="submit" class="btn btn-xs btn-danger" aria-label="Left Align"><span class="glyphicon glyphicon-trash"></span></button>
                 </td>
             </tr>
-            @endforeach
             </table>
-            <div><a href="/article/create" class="btn btn-default">新規作成</a></div>
+            <!-- <div><a href="/article/create" class="btn btn-default">新規作成</a></div> -->
         </div>
     </div>
 
@@ -39,12 +37,20 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+    data: function () {
+        return {
+        articles: [],
+        }
+    },
+
     mounted() {
-        console.log('Component mounted.')
+        console.log('ArticleIndex mounted.')
         axios
-            .get('/api/v1/users.json')
-            .then(response => (this.user = response.data))
+            .get('/api/articles')
+            .then(response => (this.articles = response.data))
     },
 }
 </script>
