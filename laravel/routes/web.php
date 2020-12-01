@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/', 'App\Http\Controllers\ArticleController');
 
-Route::get('{any}', function () {
-    return view('article/index');
-})->where('any', '.*');
+// Route::get('{any}', function () {
+//     return view('article/index');
+// })->where('any', '.*');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
