@@ -14,3 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/', 'App\Http\Controllers\ArticleController');
+
+Route::get('{any}', function () {
+    return view('article/index');
+})->where('any', '.*');

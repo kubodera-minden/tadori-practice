@@ -37834,7 +37834,12 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div")
+          _c("div", [
+            _c("img", {
+              staticClass: "img-thumbnail",
+              attrs: { src: "/storage/thumbnail/" + _vm.article.thumbnail_path }
+            })
+          ])
         ])
       ])
     ])

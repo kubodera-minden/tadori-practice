@@ -20,7 +20,7 @@
                     </p>
 
                     <div>
-                        <!-- <img src="{{ asset('storage/thumbnail/' . $article->thumbnail_path) }}" class="img-thumbnail"> -->
+                        <img :src="'/storage/thumbnail/' + article.thumbnail_path" class="img-thumbnail">
                     </div>
 
                 </div>
