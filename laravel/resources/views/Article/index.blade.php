@@ -3,10 +3,7 @@
 <div class="container ops-main">
 
 <div id="app">
-    <!-- デフォルトだとこの中ではvue.jsが有効 -->
-    <!-- example-component はLaravelに入っているサンプルのコンポーネント -->
-    <example-component></example-component>
-    <article-index></article-index>
+    <router-view />
 </div>
 
 <script src=" {{ mix('js/app.js') }} "></script> 
