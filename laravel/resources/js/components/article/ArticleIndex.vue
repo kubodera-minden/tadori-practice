@@ -16,7 +16,7 @@
             </tr>
             <tr v-for="(article,$index) in articles" :key="$index">
                 <td>
-                <a :href="`/article/` + article.id ">{{ article.id }}</a>
+                    <router-link :to="{ name: 'ArticleShow', params: { id: article.id } }">{{article.id}}</router-link>
                 </td>
                 <td>{{ article.title }}</td>
                 <td>{{ article.content }}</td>

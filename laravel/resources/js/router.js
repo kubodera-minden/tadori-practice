@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
  
 import ArticleIndex from "./components/article/ArticleIndex.vue";
+import ArticleShow from "./components/article/ArticleShow.vue";
  
 const router = new VueRouter({
     mode: "history",
@@ -12,6 +13,11 @@ const router = new VueRouter({
             path: "/",
             name: "index",
             component: ArticleIndex
+        },
+        {
+            path: '/articles/:id(\\d+)',
+            name: 'ArticleShow',
+            component: ArticleShow
         },
     ]
 });

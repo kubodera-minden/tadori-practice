@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <div class="navbar navbar-dark navbar-fixed-top logo">
-  <a href="/article" class="navbar-brand">
+  <a href="/" class="navbar-brand">
     <img src="{{ asset('storage/enect_img/enect_logo.png') }}" class="">
   </a>
 </div>
