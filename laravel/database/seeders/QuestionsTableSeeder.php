@@ -21,7 +21,6 @@ class QuestionsTableSeeder extends Seeder
         DB::table('questions')->insert([
             ['title' => '環境に優しい家ってあるの？',
             'content' => '家を建てたいのですが、アレルギーなどが心配です。なにか人にも環境にも優しいお家って建てられるのですか？',
-            'title' => '環境に優しい家ってあるの？',
             'opening_comment' => 'アトリエさんは昔からの付き合いで取材させていただきました。',
             'interviewee_name' => 'アトリエ',
             'interviewer_comment' => '〇〇さんのハテナは解決できたでしょうか。力になっていれば幸いです。',

@@ -5,6 +5,9 @@ Vue.use(VueRouter);
  
 import ArticleIndex from "./components/article/ArticleIndex.vue";
 import ArticleShow from "./components/article/ArticleShow.vue";
+
+import QuestionShow from "./components/question/QuestionShow.vue";
+ 
  
 const router = new VueRouter({
     mode: "hash",
@@ -18,6 +21,11 @@ const router = new VueRouter({
             path: '/articles/:id(\\d+)',
             name: 'ArticleShow',
             component: ArticleShow
+        },
+        {
+            path: '/questions/:id(\\d+)',
+            name: 'QuestionShow',
+            component: QuestionShow
         },
     ]
 });
