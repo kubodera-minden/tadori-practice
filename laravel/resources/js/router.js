@@ -7,7 +7,7 @@ import ArticleIndex from "./components/article/ArticleIndex.vue";
 import ArticleShow from "./components/article/ArticleShow.vue";
  
 const router = new VueRouter({
-    mode: "history",
+    mode: "hash",
     routes: [
         {
             path: "/",
