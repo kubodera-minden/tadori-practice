@@ -16,7 +16,7 @@
                     </h1>
 
                     <p class="mb-5">
-                        {{ article.title }}
+                        {{ article.content }}
                     </p>
 
                     <div>
@@ -26,22 +26,35 @@
                 </div>
         </div>
     </div>
+    <div id="codex-editor" />
 </div>
-
 </template>
 
 <script>
+import EditorJS from '@editorjs/editorjs'
 export default {
     data: function () {
         return {
-        article: [],
+            article: [],
+            editor: {},
+            SavedContent:[],
         }
     },
-    mounted() {
+    methods: {
+        // Editor.js関連
+        doEditor() {
+            this.editor = new  EditorJS({
+                holder: 'codex-editor',
+                data: this.SavedContent
+            })
+        },
+    },
+    async mounted() {
         console.log('ArticleShow mounted.')
-        axios
+        await axios
             .get(`/api/articles/${this.$route.params.id}`)
-            .then(response => (this.article = response.data))
+            .then(response => (this.article = response.data,this.SavedContent = JSON.parse(response.data.content)))
+        this.doEditor()
     }
 }
 </script>

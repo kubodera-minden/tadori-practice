@@ -7,6 +7,7 @@
   <a href="/" class="navbar-brand">
     <img src="{{ asset('storage/enect_img/enect_logo.png') }}" class="">
   </a>
+  <a href="/create">新規投稿</a>
 </div>
 <div class="body">
   @yield('content')  
