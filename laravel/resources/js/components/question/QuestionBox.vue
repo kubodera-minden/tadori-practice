@@ -4,7 +4,7 @@
             <div class="col-xs-2">
                 <img src='/storage/pien__man.png' class="img-thumbnail rounded-circle">
             </div>
-            <div class="col-xs-10 border p-4">
+            <div class="col-xs-8 border p-4">
                 <h1 class="h5 mb-4">
                     {{ content }}
                 </h1>

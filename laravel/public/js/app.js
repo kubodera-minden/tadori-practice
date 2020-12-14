@@ -37981,9 +37981,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
+  return _c("div", { staticClass: "row justify-content-end" }, [
     _c("div", { staticClass: "container mt-4 d-flex align-items-center" }, [
-      _c("div", { staticClass: "col-xs-10 border p-4" }, [
+      _c("div", { staticClass: "col-xs-8 border p-4 col-md-offset-2" }, [
         _c("h1", { staticClass: "h5 mb-4" }, [
           _vm._v("\n                " + _vm._s(_vm.content) + "\n            ")
         ])
@@ -38031,7 +38031,7 @@ var render = function() {
     _c("div", { staticClass: "container mt-4 d-flex align-items-center" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "col-xs-10 border p-4" }, [
+      _c("div", { staticClass: "col-xs-8 border p-4" }, [
         _c("h1", { staticClass: "h5 mb-4" }, [
           _vm._v("\n                " + _vm._s(_vm.content) + "\n            ")
         ])

@@ -1,7 +1,7 @@
 <template>
-    <div class="row">
+    <div class="row justify-content-end">
         <div class="container mt-4 d-flex align-items-center">
-            <div class="col-xs-10 border p-4">
+            <div class="col-xs-8 border p-4 col-md-offset-2">
                 <h1 class="h5 mb-4">
                     {{ content }}
                 </h1>
