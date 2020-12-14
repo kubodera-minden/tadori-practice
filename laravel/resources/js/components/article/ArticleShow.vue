@@ -59,8 +59,12 @@ export default {
     methods: {
         // Editor.js関連
         doEditor() {
+            const Header = require('@editorjs/header'); //https://github.com/editor-js/header
             this.editor = new  EditorJS({
                 holder: 'codex-editor',
+                tools: {
+                    header: Header,
+                },
                 data: this.SavedContent
             })
         },
