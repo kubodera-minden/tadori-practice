@@ -26,6 +26,11 @@
                 </div>
         </div>
     </div>
+    <div class="row">
+        <div class="container mt-4">
+            <div class="col-12 border" v-html="HtmlToTags" />
+        </div>
+    </div>
     <div id="codex-editor" />
 </div>
 </template>
@@ -38,7 +43,18 @@ export default {
             article: [],
             editor: {},
             SavedContent:[],
+            ContentToHtml: [],
         }
+    },
+    computed: {
+        HtmlToTags: function() {
+            const edjsHTML = require("editorjs-html");
+            const edjsParser = edjsHTML();
+            this.ContentToHtml = edjsParser.parse(this.SavedContent);
+            console.log(this.ContentToHtml)  
+            const result = this.ContentToHtml.join("\n");
+            return result;
+        },
     },
     methods: {
         // Editor.js関連

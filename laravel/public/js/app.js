@@ -2099,14 +2099,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       article: [],
       editor: {},
-      SavedContent: []
+      SavedContent: [],
+      ContentToHtml: []
     };
+  },
+  computed: {
+    HtmlToTags: function HtmlToTags() {
+      var edjsHTML = __webpack_require__(/*! editorjs-html */ "./node_modules/editorjs-html/build/edjsHTML.node.js");
+
+      var edjsParser = edjsHTML();
+      this.ContentToHtml = edjsParser.parse(this.SavedContent);
+      console.log(this.ContentToHtml);
+      var result = this.ContentToHtml.join("\n");
+      return result;
+    }
   },
   methods: {
     // Editor.js関連
@@ -6684,6 +6701,19 @@ __webpack_require__.r(__webpack_exports__);
 
 })));
 //# sourceMappingURL=bootstrap.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/editorjs-html/build/edjsHTML.node.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/editorjs-html/build/edjsHTML.node.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var t={delimiter:function(){return"<br/>"},header:function(t){var e=t.data;return"<h"+e.level+"> "+e.text+" </h"+e.level+">"},paragraph:function(t){return"<p> "+t.data.text+" </p>"},list:function(t){var e=t.data,r="unordered"===e.style?"ul":"ol",n="";return e.items&&(n=e.items.map((function(t){return"<li> "+t+" </li>"})).reduce((function(t,e){return t+e}),"")),"<"+r+"> "+n+" </"+r+">"},image:function(t){var e=t.data,r=e.caption?e.caption:"Image";return'<img src="'+(e.file?e.file.url:"")+'" alt="'+r+'" />'},quote:function(t){var e=t.data;return"<blockquote> "+e.text+" </blockquote> - "+e.caption}};function e(t){return new Error('[31m The Parser function of type "'+t+'" is not defined. \n\n  Define your custom parser functions as: [34mhttps://github.com/pavittarx/editorjs-html#extend-for-custom-blocks [0m')}module.exports=function(r){return void 0===r&&(r={}),Object.assign(t,r),{parse:function(r){return r.blocks.map((function(r){return t[r.type]?t[r.type](r):e(r.type)}))},parseBlock:function(r){return t[r.type]?t[r.type](r):e(r.type)}}};
 
 
 /***/ }),
@@ -38843,6 +38873,15 @@ var render = function() {
             })
           ])
         ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "container mt-4" }, [
+        _c("div", {
+          staticClass: "col-12 border",
+          domProps: { innerHTML: _vm._s(_vm.HtmlToTags) }
+        })
       ])
     ]),
     _vm._v(" "),
