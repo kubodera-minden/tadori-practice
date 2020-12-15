@@ -26,17 +26,21 @@
                 </div>
         </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="container mt-4">
             <div class="col-12 border" v-html="HtmlToTags" />
         </div>
-    </div>
+    </div> -->
     <div id="codex-editor" />
+    <div class="row justify-content-end">
+        <v-btn text @click="save">保存</v-btn>
+    </div>
 </div>
 </template>
 
 <script>
 import EditorJS from '@editorjs/editorjs'
+import axios from 'axios'
 export default {
     data: function () {
         return {
@@ -47,25 +51,60 @@ export default {
         }
     },
     computed: {
-        HtmlToTags: function() {
-            const edjsHTML = require("editorjs-html");
-            const edjsParser = edjsHTML();
-            this.ContentToHtml = edjsParser.parse(this.SavedContent);
-            console.log(this.ContentToHtml)  
-            const result = this.ContentToHtml.join("\n");
-            return result;
-        },
+        // HtmlToTags: function() {
+        //     const edjsHTML = require("editorjs-html");
+        //     const edjsParser = edjsHTML();
+        //     this.ContentToHtml = edjsParser.parse(this.SavedContent);
+        //     console.log(this.ContentToHtml)  
+        //     const result = this.ContentToHtml.join("\n");
+        //     return result;
+        // },
     },
     methods: {
         // Editor.js関連
         doEditor() {
             const Header = require('@editorjs/header'); //https://github.com/editor-js/header
+            const ImageTool = require('@editorjs/image');
+            
             this.editor = new  EditorJS({
                 holder: 'codex-editor',
                 tools: {
                     header: Header,
+                    image: {
+                        class: ImageTool,
+                        config: {
+                        uploader: {
+                            uploadByFile(file) {
+                            let me = this
+                            let formData = new FormData()
+                            formData.append('image', file)
+                            let config = {headers: {'content-type': 'multipart/form-data'}}
+                            return axios.post('api/upload_file', formData, config)
+                                .then(res => {
+                                return res.data
+                                })
+                            },
+                            //only work when url has extensions like .jpg
+                            uploadByUrl(url) {
+                            return me.$axios.post('api/blog/fetch_file', {url: url}).then(res => {
+                                return res.data
+                            })
+                            }
+                        }
+                        }
+                    },
                 },
                 data: this.SavedContent
+            })
+        },
+        save() {
+            this.editor.save().then((outputData) => {
+                const data = JSON.stringify(outputData);
+
+                axios.put(`api/articles/${this.$route.params.id}`, { title:'kanta',content: data });
+            })
+            .catch(err => {
+                console.log(err)
             })
         },
     },

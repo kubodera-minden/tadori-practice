@@ -49,4 +49,13 @@ class ArticleController extends Controller
       $article->delete();
       return redirect('api/articles');
     }
+
+    // editor.jsからAPIで画像が送られてきたときの処理
+    public function image_store(Request $request)
+    {
+      $path = $request->file('image')->store('public/article_img'); //例 http://localhost/public/article_img/sample.jpg
+      $path_to_storage = str_replace("public","storage",$path); //publicのままだと参照できないのでstorageを参照するようにpathを書き換える  例 http://localhost/storage/article_img/sample.jpg
+      $json = array('success'=>1, 'file'=>array('url'=>$path_to_storage));
+      return json_encode($json);
+    }
 }
