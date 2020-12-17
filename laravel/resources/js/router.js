@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
  
 Vue.use(VueRouter);
+
+import UserEdit from "./components/user/UserEdit.vue";
  
 import ArticleIndex from "./components/article/ArticleIndex.vue";
 import ArticleShow from "./components/article/ArticleShow.vue";
@@ -14,6 +16,11 @@ import QuestionShow from "./components/question/QuestionShow.vue";
 const router = new VueRouter({
     mode: "hash",
     routes: [
+        {
+            path: '/users/:id(\\d+)',
+            name: 'UserEdit',
+            component: UserEdit
+        },
         {
             path: "/",
             name: "index",
