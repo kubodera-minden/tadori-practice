@@ -1,36 +1,20 @@
 <template>
 <div class="container ops-main">
     <div class="row">
-        <div class="col-md-12">
-            <h3 class="ops-title">
-            {{ article.title }} / 
+        <div class="col-md-12 d-flex justify-content-center">
+            <h1 class="heading">
+                {{ article.title }}
             <!-- <a :href="/article/{{ article.id }}/edit">編集</a> -->
-            </h3>
+            </h1>
         </div>
     </div>
-    <div class="row">
-        <div class="container mt-4">
-                <div class="border p-4">
-                    <h1 class="h5 mb-4">
-                        {{ article.title }}
-                    </h1>
 
-                    <p class="mb-5">
-                        {{ article.content }}
-                    </p>
-
-                    <div>
-                        <img :src="'/storage/thumbnail/' + article.thumbnail_path" class="img-thumbnail">
-                    </div>
-
-                </div>
-        </div>
-    </div>
     <!-- <div class="row">
         <div class="container mt-4">
             <div class="col-12 border" v-html="HtmlToTags" />
         </div>
     </div> -->
+
     <div id="codex-editor" />
     <div class="row justify-content-end">
         <v-btn text @click="save">保存</v-btn>
@@ -65,8 +49,11 @@ export default {
         doEditor() {
             const Header = require('@editorjs/header'); //https://github.com/editor-js/header
             const ImageTool = require('@editorjs/image');
+            const Embed = require('@editorjs/embed');
+            const List = require('@editorjs/list');
             
             this.editor = new  EditorJS({
+                // readOnly: true,
                 holder: 'codex-editor',
                 tools: {
                     header: Header,
@@ -92,6 +79,20 @@ export default {
                             }
                         }
                         }
+                    },
+                    embed: {
+                        class: Embed,
+                        config: {
+                        services: {
+                            youtube: true,
+                            twitter: true,
+                            instagram: true
+                        }
+                        }
+                    },
+                    list: {
+                        class: List,
+                        inlineToolbar: true,
                     },
                 },
                 data: this.SavedContent
@@ -119,5 +120,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.heading {
+    font-size: 4em;
+    font-weight: 500;
+}
 </style>
