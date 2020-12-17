@@ -7,6 +7,7 @@ import ArticleIndex from "./components/article/ArticleIndex.vue";
 import ArticleShow from "./components/article/ArticleShow.vue";
 import ArticleNew from "./components/article/ArticleNew.vue";
 
+import QuestionIndex from "./components/question/QuestionIndex.vue";
 import QuestionShow from "./components/question/QuestionShow.vue";
  
  
@@ -27,6 +28,11 @@ const router = new VueRouter({
             path: '/articles/new',
             name: 'ArticleNew',
             component: ArticleNew
+        },
+        {
+            path: '/questions',
+            name: 'QuestionIndex',
+            component: QuestionIndex
         },
         {
             path: '/questions/:id(\\d+)',

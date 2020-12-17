@@ -10,6 +10,7 @@
 
     <QuestionBox :content="question.content"></QuestionBox>
     <AnswerBox :content="question.opening_comment"></AnswerBox>
+    <ArticleBox :article="article"></ArticleBox>
     <AnswerBox :content="question.interviewer_comment"></AnswerBox>
     <QuestionBox :content="question.questioner_comment"></QuestionBox>
 
@@ -22,21 +23,28 @@
 import QuestionBox from './QuestionBox.vue';
 import AnswerBox from './AnswerBox.vue';
 
+import ArticleBox from '../article/ArticleBox.vue';
+
 export default {
     components: {
         QuestionBox,
-        AnswerBox
+        AnswerBox,
+        ArticleBox,
     },
     data: function () {
         return {
-        question: [],
+            question: [],
+            article: [],
         }
     },
-    mounted() {
+    async mounted() {
         console.log('QuestionShow mounted.')
-        axios
+        await axios
             .get(`/api/questions/${this.$route.params.id}`)
             .then(response => (this.question = response.data))
+        await axios
+            .get(`/api/articles/${this.question.article_id}`)
+            .then(response => (this.article = JSON.parse(response.data.content)))
     }
 }
 </script>
