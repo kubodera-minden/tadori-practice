@@ -597,7 +597,7 @@ pre code {
   .container-md,
   .container-sm,
   .container {
-    max-width: 100%;
+    max-width: 720px;
   }
 }
 

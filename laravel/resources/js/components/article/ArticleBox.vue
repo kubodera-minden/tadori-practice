@@ -4,13 +4,20 @@
         <div v-on:click="doEditor(),btnTrigger=!btnTrigger" v-if="btnTrigger" class="col-3 offset-4 btn btn-primary">記事を読む</div>
         <div id="codex-editor" class="col-12" />
     </div>
+    <ProductCard v-if="!btnTrigger"></ProductCard>
 </div>
 </template>
 
 <script>
 import EditorJS from '@editorjs/editorjs'
 import axios from 'axios'
+
+import ProductCard from '../product/ProductCard.vue';
+
 export default {
+    components: {
+        ProductCard,
+    },
     props: [
         'article',
     ],

@@ -7,7 +7,7 @@
                 </h1>
             </div>
             <div class="col-2">
-                <img src='/storage/shinbun_kisya.png' class="img-thumbnail rounded-circle">
+                <img src='/storage/inazou.png' class="img-thumbnail rounded-circle">
             </div>
         </div>
     </div>
