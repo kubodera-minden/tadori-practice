@@ -34,3 +34,8 @@ Route::group(['middleware' => ['api']], function(){
 // APIで画像が送られてきたときの処理
     Route::post('upload_file', [App\Http\Controllers\Api\ArticleController::class, 'image_store']);
 });
+
+Route::group(['middleware' => ['api']], function(){
+// APIで画像が送られてきたときの処理
+    Route::post('upload_user_image/{id}', [App\Http\Controllers\Api\UserController::class, 'image_store']);
+});
