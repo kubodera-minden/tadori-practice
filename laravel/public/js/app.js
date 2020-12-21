@@ -2694,6 +2694,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 
@@ -44417,7 +44418,11 @@ var render = function() {
               _c("vue-cropper", {
                 ref: "cropper",
                 staticClass: "mr-2 w-50",
-                attrs: { guides: true, src: _vm.imageSrc }
+                attrs: {
+                  guides: true,
+                  src: _vm.imageSrc,
+                  "aspect-ratio": 1 / 1
+                }
               }),
               _vm._v(" "),
               _c("img", {

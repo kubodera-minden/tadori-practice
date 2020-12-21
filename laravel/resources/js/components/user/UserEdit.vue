@@ -25,6 +25,7 @@
             ref="cropper"
             :guides="true"
             :src="imageSrc"
+            :aspect-ratio="1/1"
         ></vue-cropper>
 
         <!-- Cropped image previewer -->
