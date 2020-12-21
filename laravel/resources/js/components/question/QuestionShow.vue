@@ -8,11 +8,11 @@
         </div>
     </div>
 
-    <QuestionBox :content="question.content"></QuestionBox>
+    <QuestionBox :content="question.content" :user="user"></QuestionBox>
     <AnswerBox :content="question.opening_comment"></AnswerBox>
     <ArticleBox :article="article"></ArticleBox>
     <AnswerBox :content="question.interviewer_comment"></AnswerBox>
-    <QuestionBox :content="question.questioner_comment"></QuestionBox>
+    <QuestionBox :content="question.questioner_comment" :name="user.name" :imgSrc="user.image_path"></QuestionBox>
 
 </div>
 
@@ -34,6 +34,7 @@ export default {
     data: function () {
         return {
             question: [],
+            user: [],
             article: [],
         }
     },
@@ -42,6 +43,9 @@ export default {
         await axios
             .get(`/api/questions/${this.$route.params.id}`)
             .then(response => (this.question = response.data))
+        await axios
+            .get(`/api/users/${this.question.user_id}`)
+            .then(response => (this.user = response.data))
         await axios
             .get(`/api/articles/${this.question.article_id}`)
             .then(response => (this.article = JSON.parse(response.data.content)))

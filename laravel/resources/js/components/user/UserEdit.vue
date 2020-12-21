@@ -1,12 +1,13 @@
 <template>
 <div class="container ops-main">
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-center">
-            <h1 class="">
-                {{ user.name }}
-                <img :src="'storage/user_img/' + user.image_path" />
-            </h1>
-        </div>
+      <div class="col-5 d-flex justify-content-center">
+          <img :src="'storage/user_img/' + user.image_path" width="300" />
+      </div>
+      <div class="col-7">
+        <h1 class="">{{ user.name }}</h1>
+        <p>あとで自己紹介のカラムを作る！</p>
+      </div>
     </div>
 
     <div class="p-3 bg-white shadow rounded-lg">
