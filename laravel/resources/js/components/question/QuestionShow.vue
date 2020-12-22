@@ -9,10 +9,10 @@
     </div>
 
     <QuestionBox :content="question.content" :user="user"></QuestionBox>
-    <AnswerBox :content="question.opening_comment"></AnswerBox>
+    <AnswerBox :content="question.opening_comment" :interviewer="interviewer"></AnswerBox>
     <ArticleBox :article="article"></ArticleBox>
-    <AnswerBox :content="question.interviewer_comment"></AnswerBox>
-    <QuestionBox :content="question.questioner_comment" :name="user.name" :imgSrc="user.image_path"></QuestionBox>
+    <AnswerBox :content="question.interviewer_comment" :interviewer="interviewer"></AnswerBox>
+    <QuestionBox :content="question.questioner_comment" :user="user"></QuestionBox>
 
 </div>
 
@@ -35,6 +35,7 @@ export default {
         return {
             question: [],
             user: [],
+            interviewer: [],
             article: [],
         }
     },
@@ -46,6 +47,9 @@ export default {
         await axios
             .get(`/api/users/${this.question.user_id}`)
             .then(response => (this.user = response.data))
+        await axios
+            .get(`/api/interviewers/${this.question.interviewer_id}`)
+            .then(response => (this.interviewer = response.data))
         await axios
             .get(`/api/articles/${this.question.article_id}`)
             .then(response => (this.article = JSON.parse(response.data.content)))

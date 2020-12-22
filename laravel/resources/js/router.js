@@ -11,8 +11,9 @@ import ArticleNew from "./components/article/ArticleNew.vue";
 
 import QuestionIndex from "./components/question/QuestionIndex.vue";
 import QuestionShow from "./components/question/QuestionShow.vue";
- 
- 
+
+import InterviewerShow from "./components/interviewer/InterviewerShow.vue";
+
 const router = new VueRouter({
     mode: "hash",
     routes: [
@@ -45,6 +46,11 @@ const router = new VueRouter({
             path: '/questions/:id(\\d+)',
             name: 'QuestionShow',
             component: QuestionShow
+        },
+        {
+            path: '/interviewers/:id(\\d+)',
+            name: 'InterviewerShow',
+            component: InterviewerShow
         },
     ]
 });

@@ -20,10 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['api']], function(){
     Route::resource('users', 'App\Http\Controllers\Api\UserController',['except' => ['create', 'edit']]);
+    Route::post('upload_user_image/{id}', [App\Http\Controllers\Api\UserController::class, 'image_store']);
 });
 
 Route::group(['middleware' => ['api']], function(){
     Route::resource('articles', 'App\Http\Controllers\Api\ArticleController',['except' => ['create', 'edit']]);
+    Route::post('upload_file', [App\Http\Controllers\Api\ArticleController::class, 'image_store']);
 });
 
 Route::group(['middleware' => ['api']], function(){
@@ -31,11 +33,6 @@ Route::group(['middleware' => ['api']], function(){
 });
 
 Route::group(['middleware' => ['api']], function(){
-// APIで画像が送られてきたときの処理
-    Route::post('upload_file', [App\Http\Controllers\Api\ArticleController::class, 'image_store']);
-});
-
-Route::group(['middleware' => ['api']], function(){
-// APIで画像が送られてきたときの処理
-    Route::post('upload_user_image/{id}', [App\Http\Controllers\Api\UserController::class, 'image_store']);
+    Route::resource('interviewers', 'App\Http\Controllers\Api\InterviewerController',['except' => ['create', 'edit']]);
+    Route::post('upload_interviewer_image/{id}', [App\Http\Controllers\Api\InterviewerController::class, 'image_store']);
 });

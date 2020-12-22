@@ -7,7 +7,10 @@
                 </h1>
             </div>
             <div class="col-2">
-                <img src='/storage/inazou.png' class="img-thumbnail rounded-circle">
+                <img :src="'/storage/interviewer_img/' + interviewer.image_path" class="img-thumbnail rounded-circle">
+                <div class="name-box p-2 d-flex justify-content-center">
+                    <router-link :to="{ name: 'InterviewerShow', params: { id: interviewer.id } }">{{ interviewer.name }}</router-link>
+                </div>
             </div>
         </div>
     </div>
@@ -16,11 +19,17 @@
 <script>
 export default {
   props: [
+    'interviewer',
     'content'
   ]
 }
 </script>
 
 <style lang="scss" scoped>
-
+.name-box {
+    a {
+        font-size: 2rem;
+        color: rgb(27, 228, 27);
+    }
+}
 </style>
