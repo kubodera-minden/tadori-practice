@@ -11,6 +11,7 @@ import ArticleNew from "./components/article/ArticleNew.vue";
 
 import QuestionIndex from "./components/question/QuestionIndex.vue";
 import QuestionShow from "./components/question/QuestionShow.vue";
+import QuestionCreate from "./components/question/QuestionCreate.vue";
 
 import InterviewerShow from "./components/interviewer/InterviewerShow.vue";
 
@@ -46,6 +47,11 @@ const router = new VueRouter({
             path: '/questions/:id(\\d+)',
             name: 'QuestionShow',
             component: QuestionShow
+        },
+        {
+            path: '/questions/create',
+            name: 'QuestionCreate',
+            component: QuestionCreate
         },
         {
             path: '/interviewers/:id(\\d+)',
