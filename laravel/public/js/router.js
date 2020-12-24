@@ -2016,11 +2016,19 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @editorjs/editorjs */ "./node_modules/@editorjs/editorjs/dist/editor.js");
-/* harmony import */ var _editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _product_ProductCard_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../product/ProductCard.vue */ "./resources/js/components/product/ProductCard.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @editorjs/editorjs */ "./node_modules/@editorjs/editorjs/dist/editor.js");
+/* harmony import */ var _editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _product_ProductCard_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../product/ProductCard.vue */ "./resources/js/components/product/ProductCard.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2036,19 +2044,40 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ProductCard: _product_ProductCard_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    ProductCard: _product_ProductCard_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
-  props: ['article'],
+  props: ['content', 'product_id'],
   data: function data() {
     return {
       editor: {},
-      btnTrigger: true
+      btnTrigger: true,
+      product: []
     };
+  },
+  mounted: function mounted() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   computed: {},
   methods: {
     // Editor.js関連
     doEditor: function doEditor() {
+      var _this = this;
+
+      //Productの情報を取ってくる
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/products/".concat(this.product_id)).then(function (response) {
+        return _this.product = response.data;
+      });
+
       var Header = __webpack_require__(/*! @editorjs/header */ "./node_modules/@editorjs/header/dist/bundle.js"); //https://github.com/editor-js/header
 
 
@@ -2058,7 +2087,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var List = __webpack_require__(/*! @editorjs/list */ "./node_modules/@editorjs/list/dist/bundle.js");
 
-      this.editor = new _editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0___default.a({
+      this.editor = new _editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1___default.a({
         readOnly: true,
         holder: 'codex-editor',
         tools: {
@@ -2079,7 +2108,7 @@ __webpack_require__.r(__webpack_exports__);
             inlineToolbar: true
           }
         },
-        data: this.article
+        data: this.content
       });
     }
   }
@@ -2194,6 +2223,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_editorjs_editorjs__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _product_ProductCard_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../product/ProductCard.vue */ "./resources/js/components/product/ProductCard.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2217,12 +2247,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    ProductCard: _product_ProductCard_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
   data: function data() {
     return {
       article: [],
+      product: [],
       editor: {},
       SavedContent: []
     };
@@ -2320,9 +2358,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               });
 
             case 3:
+              _context.next = 5;
+              return axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/products/".concat(_this2.article.product_id)).then(function (response) {
+                return _this2.product = response.data;
+              });
+
+            case 5:
               _this2.doEditor();
 
-            case 4:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -2447,15 +2491,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['product'],
   data: function data() {
-    return {
-      product: ''
-    };
+    return {};
   },
   mounted: function mounted() {
-    console.log('ProductCard mounted.'); // axios
-    //     .get('/api/articles')
-    //     .then(response => (this.articles = response.data))
+    console.log('ProductCard mounted.');
   }
 });
 
@@ -2750,7 +2791,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       question: [],
       user: [],
       interviewer: [],
-      article: []
+      article: [],
+      articleContent: ""
     };
   },
   mounted: function mounted() {
@@ -2782,7 +2824,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 7:
               _context.next = 9;
               return axios.get("/api/articles/".concat(_this.question.article_id)).then(function (response) {
-                return _this.article = JSON.parse(response.data.content);
+                return _this.article = response.data, _this.articleContent = JSON.parse(response.data.content);
               });
 
             case 9:
@@ -9087,7 +9129,9 @@ var render = function() {
         _c("div", { staticClass: "col-12", attrs: { id: "codex-editor" } })
       ]),
       _vm._v(" "),
-      !_vm.btnTrigger ? _c("ProductCard") : _vm._e()
+      !_vm.btnTrigger
+        ? _c("product-card", { attrs: { product: _vm.product } })
+        : _vm._e()
     ],
     1
   )
@@ -9264,30 +9308,39 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container ops-main" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 d-flex justify-content-center" }, [
-        _c("h1", { staticClass: "heading" }, [
-          _vm._v(
-            "\n                " + _vm._s(_vm.article.title) + "\n            "
-          )
+  return _c(
+    "div",
+    { staticClass: "container ops-main" },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12 d-flex justify-content-center" }, [
+          _c("h1", { staticClass: "heading" }, [
+            _vm._v(
+              "\n                " +
+                _vm._s(_vm.article.title) +
+                "\n            "
+            )
+          ])
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { attrs: { id: "codex-editor" } }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "row justify-content-end" },
-      [
-        _c("v-btn", { attrs: { text: "" }, on: { click: _vm.save } }, [
-          _vm._v("保存")
-        ])
-      ],
-      1
-    )
-  ])
+      ]),
+      _vm._v(" "),
+      _c("div", { attrs: { id: "codex-editor" } }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row justify-content-end" },
+        [
+          _c("v-btn", { attrs: { text: "" }, on: { click: _vm.save } }, [
+            _vm._v("保存")
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("product-card", { attrs: { product: _vm.product } })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -9364,41 +9417,34 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "container ops-main" }, [
-        _c("div", { staticClass: "row  justify-content-center" }, [
-          _c("div", { staticClass: "col-8 row border" }, [
-            _c("div", { staticClass: "col-2" }, [
-              _c("img", {
-                staticClass: "img-thumbnail",
-                attrs: { src: "/storage/pien__man.png" }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-8" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-12" }, [
-                  _c("p", [_vm._v("商品名")])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-12" }, [
-                  _c("p", [_vm._v("商品説明")])
-                ])
+  return _c("div", [
+    _c("div", { staticClass: "container ops-main" }, [
+      _c("div", { staticClass: "row  justify-content-center" }, [
+        _c("div", { staticClass: "col-8 row border" }, [
+          _c("div", { staticClass: "col-2" }, [
+            _c("img", {
+              staticClass: "img-thumbnail",
+              attrs: { src: "/storage/product_img/" + _vm.product.iamge_path }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-8" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-12" }, [
+                _c("p", [_vm._v(_vm._s(_vm.product.name))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-12" }, [
+                _c("p", [_vm._v(_vm._s(_vm.product.content))])
               ])
             ])
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -9731,7 +9777,7 @@ var render = function() {
         _c("div", { staticClass: "col-xs-12" }, [
           _c("h1", { staticClass: "ops-title" }, [
             _vm._v(
-              "\n            " + _vm._s(_vm.question.title) + "\n            "
+              "\n              " + _vm._s(_vm.question.title) + "\n            "
             )
           ])
         ])
@@ -9751,7 +9797,12 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.question.opening_comment
-        ? _c("ArticleBox", { attrs: { article: _vm.article } })
+        ? _c("ArticleBox", {
+            attrs: {
+              content: _vm.articleContent,
+              product_id: _vm.article.product_id
+            }
+          })
         : _vm._e(),
       _vm._v(" "),
       _vm.question.interviewer_comment

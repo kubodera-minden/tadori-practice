@@ -36,3 +36,8 @@ Route::group(['middleware' => ['api']], function(){
     Route::resource('interviewers', 'App\Http\Controllers\Api\InterviewerController',['except' => ['create', 'edit']]);
     Route::post('upload_interviewer_image/{id}', [App\Http\Controllers\Api\InterviewerController::class, 'image_store']);
 });
+
+Route::group(['middleware' => ['api']], function(){
+    Route::resource('products', 'App\Http\Controllers\Api\ProductController',['except' => ['create', 'edit']]);
+    Route::post('upload_product_image/{id}', [App\Http\Controllers\Api\ProductController::class, 'image_store']);
+});

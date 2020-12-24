@@ -4,7 +4,7 @@
         <div v-on:click="doEditor(),btnTrigger=!btnTrigger" v-if="btnTrigger" class="col-3 offset-4 btn btn-primary">記事を読む</div>
         <div id="codex-editor" class="col-12" />
     </div>
-    <ProductCard v-if="!btnTrigger"></ProductCard>
+    <product-card :product="product" v-if="!btnTrigger" />
 </div>
 </template>
 
@@ -19,19 +19,29 @@ export default {
         ProductCard,
     },
     props: [
-        'article',
+        'content',
+        'product_id',
     ],
     data: function () {
         return {
             editor: {},
             btnTrigger: true,
+            product: [],
         }
+    },
+    async mounted() {
     },
     computed: {
     },
     methods: {
         // Editor.js関連
         doEditor() {
+
+            //Productの情報を取ってくる
+            axios
+                .get(`/api/products/${this.product_id}`)
+                .then(response => (this.product = response.data))
+
             const Header = require('@editorjs/header'); //https://github.com/editor-js/header
             const ImageTool = require('@editorjs/image');
             const Embed = require('@editorjs/embed');
@@ -58,7 +68,7 @@ export default {
                         inlineToolbar: true,
                     },
                 },
-                data: this.article
+                data: this.content
             })
         },
     },

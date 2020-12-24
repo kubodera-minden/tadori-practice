@@ -12,16 +12,26 @@
     <div class="row justify-content-end">
         <v-btn text @click="save">保存</v-btn>
     </div>
+
+    <product-card :product="product" />
+
 </div>
 </template>
 
 <script>
 import EditorJS from '@editorjs/editorjs'
 import axios from 'axios'
+import ProductCard from '../product/ProductCard.vue'
+
 export default {
+    components: { 
+        ProductCard 
+    },
+
     data: function () {
         return {
             article: [],
+            product: [],
             editor: {},
             SavedContent:[],
         }
@@ -98,6 +108,9 @@ export default {
         await axios
             .get(`/api/articles/${this.$route.params.id}`)
             .then(response => (this.article = response.data,this.SavedContent = JSON.parse(response.data.content)))
+        await axios
+            .get(`/api/products/${this.article.product_id}`)
+            .then(response => (this.product = response.data))
         this.doEditor()
     }
 }

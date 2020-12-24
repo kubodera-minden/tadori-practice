@@ -4,15 +4,15 @@
         <div class="row  justify-content-center">
             <div class="col-8 row border">
                 <div class="col-2">
-                    <img src='/storage/pien__man.png' class="img-thumbnail">
+                    <img :src="'/storage/product_img/' + product.iamge_path" class="img-thumbnail">
                 </div>
                 <div class="col-8">
                     <div class="row">
                         <div class="col-12">
-                            <p>商品名</p>
+                            <p>{{product.name}}</p>
                         </div>
                         <div class="col-12">
-                            <p>商品説明</p>
+                            <p>{{product.content}}</p>
                         </div>
                     </div>
                 </div>
@@ -26,17 +26,17 @@
 import axios from 'axios';
 
 export default {
+    props: [
+        'product',
+    ],
+
     data: function () {
         return {
-            product: '',
         }
     },
 
     mounted() {
         console.log('ProductCard mounted.')
-        // axios
-        //     .get('/api/articles')
-        //     .then(response => (this.articles = response.data))
     },
 }
 </script>

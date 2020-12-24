@@ -3,14 +3,14 @@
     <div class="row">
         <div class="col-xs-12">
             <h1 class="ops-title">
-            {{ question.title }}
+              {{ question.title }}
             </h1>
         </div>
     </div>
 
     <QuestionBox :content="question.content" :user="user"></QuestionBox>
     <AnswerBox v-if="question.opening_comment" :content="question.opening_comment" :interviewer="interviewer"></AnswerBox>
-    <ArticleBox v-if="question.opening_comment" :article="article"></ArticleBox>
+    <ArticleBox v-if="question.opening_comment" :content="articleContent" :product_id="article.product_id"></ArticleBox>
     <AnswerBox v-if="question.interviewer_comment" :content="question.interviewer_comment" :interviewer="interviewer"></AnswerBox>
     <QuestionBox v-if="question.questioner_comment" :content="question.questioner_comment" :user="user"></QuestionBox>
 
@@ -22,7 +22,6 @@
 
 import QuestionBox from './QuestionBox.vue';
 import AnswerBox from './AnswerBox.vue';
-
 import ArticleBox from '../article/ArticleBox.vue';
 
 export default {
@@ -37,6 +36,7 @@ export default {
             user: [],
             interviewer: [],
             article: [],
+            articleContent: "",
         }
     },
     async mounted() {
@@ -52,7 +52,7 @@ export default {
             .then(response => (this.interviewer = response.data))
         await axios
             .get(`/api/articles/${this.question.article_id}`)
-            .then(response => (this.article = JSON.parse(response.data.content)))
+            .then(response => (this.article = response.data,this.articleContent = JSON.parse(response.data.content)))
     }
 }
 </script>
