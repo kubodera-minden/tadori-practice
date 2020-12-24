@@ -26,6 +26,7 @@ Route::group(['middleware' => ['api']], function(){
 Route::group(['middleware' => ['api']], function(){
     Route::resource('articles', 'App\Http\Controllers\Api\ArticleController',['except' => ['create', 'edit']]);
     Route::post('upload_file', [App\Http\Controllers\Api\ArticleController::class, 'image_store']);
+    Route::post('upload_thumbnail/{id}', [App\Http\Controllers\Api\ArticleController::class, 'thumbnail_store']);
 });
 
 Route::group(['middleware' => ['api']], function(){

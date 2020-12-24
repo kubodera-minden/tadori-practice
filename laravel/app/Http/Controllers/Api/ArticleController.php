@@ -12,6 +12,12 @@ class ArticleController extends Controller
     public function index()
     {
       $articles = Article::all();
+      // 各articleの作られた時間を日付だけのフォーマットに変換する。
+      foreach ($articles as $article) {
+        $date = date_create($article->date);
+        $date = date_format($article->created_at , 'Y-m-d');
+        $article->date = $date; 
+      }
       return $articles;
     }
 
@@ -57,5 +63,14 @@ class ArticleController extends Controller
       $path_to_storage = str_replace("public","storage",$path); //publicのままだと参照できないのでstorageを参照するようにpathを書き換える  例 http://localhost/storage/article_img/sample.jpg
       $json = array('success'=>1, 'file'=>array('url'=>$path_to_storage));
       return json_encode($json);
+    }
+
+    public function thumbnail_store(Request $request,$id)
+    {
+      $path = $request->file('image')->store('public/thumbnail');
+      $article = Article::find($id);
+      $article->thumbnail_path = basename($path); //そのままだと、フルパスがDBに格納されてしまうのでbasenameでファイル名を取り出してから格納。
+      $article->save();
+      return response()->json(['success' => 'ユーザー画像がDBに格納されました']);
     }
 }

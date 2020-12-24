@@ -8,6 +8,8 @@
         </div>
     </div>
 
+    <thumbnail-cropper :articleId="article.id" v-if="article.thumbnail_path === '' " />
+
     <div id="codex-editor" />
     <div class="row justify-content-end">
         <v-btn text @click="save">保存</v-btn>
@@ -22,10 +24,12 @@
 import EditorJS from '@editorjs/editorjs'
 import axios from 'axios'
 import ProductCard from '../product/ProductCard.vue'
+import ThumbnailCropper from './ThumbnailCropper.vue'
 
 export default {
     components: { 
-        ProductCard 
+        ProductCard,
+        ThumbnailCropper 
     },
 
     data: function () {

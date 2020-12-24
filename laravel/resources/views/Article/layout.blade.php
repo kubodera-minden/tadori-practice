@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <div class="navbar navbar-dark navbar-fixed-top logo">
-  <a href="/" class="navbar-brand">
+  <a href="/#/" class="navbar-brand">
     <img src="{{ asset('storage/enect_img/enect_logo.png') }}" class="">
   </a>
   <a href="/create">新規投稿</a>

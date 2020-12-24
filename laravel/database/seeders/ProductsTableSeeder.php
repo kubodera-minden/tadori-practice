@@ -22,8 +22,9 @@ class ProductsTableSeeder extends Seeder
             ['name' => 'アトリエのマイホーム',
             'content' => '環境に配慮したエコなハウスです。',
             'price' => 50000000,
-            'created_at' => time(),
-            'updated_at' => time()
+            'image_path' => 'bCmhQwu99iqrtu5ps1wTtsdih8RdVyj3kqJNAGtg.png',
+            'created_at' => date("Y/m/d H:i:s"),
+            'updated_at' => date("Y/m/d H:i:s")
             ]
         ]);
     }
