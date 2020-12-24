@@ -15,6 +15,9 @@ import QuestionCreate from "./components/question/QuestionCreate.vue";
 
 import InterviewerShow from "./components/interviewer/InterviewerShow.vue";
 
+import ProductIndex from "./components/product/ProductIndex.vue";
+import ProductShow from "./components/product/ProductShow.vue";
+
 const router = new VueRouter({
     mode: "hash",
     routes: [
@@ -57,6 +60,16 @@ const router = new VueRouter({
             path: '/interviewers/:id(\\d+)',
             name: 'InterviewerShow',
             component: InterviewerShow
+        },
+        {
+            path: '/products',
+            name: 'ProductIndex',
+            component: ProductIndex
+        },
+        {
+            path: '/products/:id(\\d+)',
+            name: 'ProductShow',
+            component: ProductShow
         },
     ]
 });

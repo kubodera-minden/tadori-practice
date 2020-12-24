@@ -17,7 +17,7 @@
 
 <script>
 import axios from 'axios'
-import SquareQropper from './ SquareQropper.vue';
+import SquareQropper from './SquareQropper.vue';
 
 export default {
     components: {

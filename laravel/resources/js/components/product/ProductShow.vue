@@ -2,15 +2,15 @@
 <div class="container ops-main">
     <div class="row">
       <div class="col-5 d-flex justify-content-center">
-          <img :src="'storage/interviewer_img/' + interviewer.image_path" width="300" />
+          <img :src="'storage/product_img/' + product.image_path" width="300" />
       </div>
       <div class="col-7">
-        <h1 class="">{{ interviewer.name }}</h1>
-        <p>あとで自己紹介のカラムを作る！</p>
+        <h1 class="">{{ product.name }}</h1>
+        <p>{{product.content}}</p>
       </div>
     </div>
 
-    <square-qropper :axiosPath="'upload_interviewer_image'" :userId="interviewer.id" />
+    <square-qropper :axiosPath="'upload_product_image'" :userId="product.id" />
 
 </div>
 </template>
@@ -20,24 +20,24 @@ import axios from 'axios'
 import SquareQropper from '../user/SquareQropper.vue';
 
 export default {
-    components: {
+    components: { 
         SquareQropper
     },
+
     data: function () {
         return {
-            interviewer: [],
+            product: [],
         }
     },
     computed: {
-
     },
     methods: {
     },
     async mounted() {
-        console.log('InterviewerShow mounted.')
+        console.log('ProductShow mounted.')
         await axios
-            .get(`/api/interviewers/${this.$route.params.id}`)
-            .then(response => (this.interviewer = response.data))
+            .get(`/api/products/${this.$route.params.id}`)
+            .then(response => (this.product = response.data))
     }
 }
 </script>

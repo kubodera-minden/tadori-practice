@@ -49,12 +49,12 @@ class ProductController extends Controller
       return redirect('api/products');
     }
 
-    // editor.jsからAPIで画像が送られてきたときの処理
-    public function image_store(Request $request)
+    public function image_store(Request $request,$id)
     {
-      $path = $request->file('image')->store('public/product_img'); //例 http://localhost/public/product_img/sample.jpg
-      $path_to_storage = str_replace("public","storage",$path); //publicのままだと参照できないのでstorageを参照するようにpathを書き換える  例 http://localhost/storage/article_img/sample.jpg
-      $json = array('success'=>1, 'file'=>array('url'=>$path_to_storage));
-      return json_encode($json);
+        $path = $request->file('image')->store('public/product_img');
+        $product = Product::find($id);
+        $product->image_path = basename($path); //そのままだと、フルパスがDBに格納されてしまうのでbasenameでファイル名を取り出してから格納。
+        $product->save();
+        return response()->json(['success' => 'ユーザー画像がDBに格納されました']);
     }
 }
