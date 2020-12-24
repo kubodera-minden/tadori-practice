@@ -9,10 +9,10 @@
     </div>
 
     <QuestionBox :content="question.content" :user="user"></QuestionBox>
-    <AnswerBox :content="question.opening_comment" :interviewer="interviewer"></AnswerBox>
-    <ArticleBox :article="article"></ArticleBox>
-    <AnswerBox :content="question.interviewer_comment" :interviewer="interviewer"></AnswerBox>
-    <QuestionBox :content="question.questioner_comment" :user="user"></QuestionBox>
+    <AnswerBox v-if="question.opening_comment" :content="question.opening_comment" :interviewer="interviewer"></AnswerBox>
+    <ArticleBox v-if="question.opening_comment" :article="article"></ArticleBox>
+    <AnswerBox v-if="question.interviewer_comment" :content="question.interviewer_comment" :interviewer="interviewer"></AnswerBox>
+    <QuestionBox v-if="question.questioner_comment" :content="question.questioner_comment" :user="user"></QuestionBox>
 
 </div>
 

@@ -9741,25 +9741,33 @@ var render = function() {
         attrs: { content: _vm.question.content, user: _vm.user }
       }),
       _vm._v(" "),
-      _c("AnswerBox", {
-        attrs: {
-          content: _vm.question.opening_comment,
-          interviewer: _vm.interviewer
-        }
-      }),
+      _vm.question.opening_comment
+        ? _c("AnswerBox", {
+            attrs: {
+              content: _vm.question.opening_comment,
+              interviewer: _vm.interviewer
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
-      _c("ArticleBox", { attrs: { article: _vm.article } }),
+      _vm.question.opening_comment
+        ? _c("ArticleBox", { attrs: { article: _vm.article } })
+        : _vm._e(),
       _vm._v(" "),
-      _c("AnswerBox", {
-        attrs: {
-          content: _vm.question.interviewer_comment,
-          interviewer: _vm.interviewer
-        }
-      }),
+      _vm.question.interviewer_comment
+        ? _c("AnswerBox", {
+            attrs: {
+              content: _vm.question.interviewer_comment,
+              interviewer: _vm.interviewer
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
-      _c("QuestionBox", {
-        attrs: { content: _vm.question.questioner_comment, user: _vm.user }
-      })
+      _vm.question.questioner_comment
+        ? _c("QuestionBox", {
+            attrs: { content: _vm.question.questioner_comment, user: _vm.user }
+          })
+        : _vm._e()
     ],
     1
   )
