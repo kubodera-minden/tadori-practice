@@ -22,9 +22,9 @@ class CreateQuestionsTable extends Migration
             $table->string('interviewee_name');
             $table->text('interviewer_comment');
             $table->text('questioner_comment');
-            $table->string('user_id');
-            $table->string('interviewer_id');
-            $table->string('article_id');
+            $table->integer('user_id');
+            $table->integer('interviewer_id');
+            $table->integer('article_id');
         });
     }
 
