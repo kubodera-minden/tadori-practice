@@ -1,0 +1,39 @@
+.body { //フッター固定用
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 250px;
+}
+
+.footer {
+    width: 100%; //フッター固定用
+    position: absolute; //フッター固定用
+    bottom: 0; //フッター固定用
+    background-color: rgb(0, 0, 0);
+    a {
+        color: rgb(255, 255, 255);
+        font-size: 3em;
+    }
+}
+
+.sns-container {
+    a::after {
+        font-family: "Font Awesome 5 Brands";
+        color: white;
+    }
+    .instagram::after {
+        content: "\f16d";
+    }
+    .facebook::after {
+        content: "\f082";
+    }
+    .twitter::after {
+        content: "\f099";
+    }
+}
+
+.category-container {
+    a {
+        display: flex;
+        justify-content: center;
+    }
+}
