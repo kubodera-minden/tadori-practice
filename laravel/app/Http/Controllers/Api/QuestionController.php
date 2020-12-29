@@ -43,9 +43,18 @@ class QuestionController extends Controller
       $questions->interviewee_name = $request->interviewee_name;
       $questions->interviewer_comment = $request->interviewer_comment;
       $questions->questioner_comment = $request->questioner_comment;
-      $questions->content = $request->content;
       $questions->save();
       return redirect("api/questions/".$id);
+    }
+
+    public function update_question(Request $request, $id)
+    {
+      $question = Question::find($id);
+      $question->opening_comment = $request->opening_comment;
+      $question->interviewer_comment = $request->interviewer_comment;
+      $question->questioner_comment = $request->questioner_comment;
+      $question->save();
+      return $id;
     }
 
     public function destroy($id)

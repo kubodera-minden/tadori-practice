@@ -2782,6 +2782,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2801,7 +2817,95 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['interviewer', 'content']
+  props: ['question', 'interviewer', 'content'],
+  data: function data() {
+    return {
+      answer: {
+        content: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {
+    createOpeningComment: function () {
+      var _createOpeningComment = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _this = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.post("/api/update_question/".concat(this.question.id), {
+                  opening_comment: this.answer.content,
+                  interviewer_comment: this.question.interviewer_comment
+                }).then(function (response) {
+                  return _this.$router.go({
+                    path: _this.$router.currentRoute.path,
+                    force: true
+                  });
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function createOpeningComment() {
+        return _createOpeningComment.apply(this, arguments);
+      }
+
+      return createOpeningComment;
+    }(),
+    createInterviewerComment: function () {
+      var _createInterviewerComment = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+        var _this2 = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios.post("/api/update_question/".concat(this.question.id), {
+                  interviewer_comment: this.answer.content,
+                  opening_comment: this.question.opening_comment
+                }).then(function (response) {
+                  return _this2.$router.go({
+                    path: _this2.$router.currentRoute.path,
+                    force: true
+                  });
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function createInterviewerComment() {
+        return _createInterviewerComment.apply(this, arguments);
+      }
+
+      return createInterviewerComment;
+    }()
+  }
 });
 
 /***/ }),
@@ -2815,6 +2919,18 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
 //
 //
 //
@@ -2834,7 +2950,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user', 'content']
+  props: ['question', 'user', 'content'],
+  data: function data() {
+    return {
+      comment: ''
+    };
+  },
+  mounted: function mounted() {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {
+    createComment: function () {
+      var _createComment = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var _this = this;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.post("/api/update_question/".concat(this.question.id), {
+                  questioner_comment: this.comment,
+                  opening_comment: this.question.opening_comment,
+                  interviewer_comment: this.question.interviewer_comment
+                }).then(function (response) {
+                  return _this.$router.go({
+                    path: _this.$router.currentRoute.path,
+                    force: true
+                  });
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function createComment() {
+        return _createComment.apply(this, arguments);
+      }
+
+      return createComment;
+    }()
+  }
 });
 
 /***/ }),
@@ -10009,9 +10179,80 @@ var render = function() {
   return _c("div", { staticClass: "row justify-content-end" }, [
     _c("div", { staticClass: "container mt-4 d-flex align-items-center" }, [
       _c("div", { staticClass: "col-8 border p-4 offset-2" }, [
-        _c("h1", { staticClass: "h5 mb-4" }, [
-          _vm._v("\n                " + _vm._s(_vm.content) + "\n            ")
-        ])
+        _vm.content
+          ? _c("h1", { staticClass: "h5 mb-4" }, [
+              _vm._v(
+                "\n                " + _vm._s(_vm.content) + "\n            "
+              )
+            ])
+          : _vm.question.opening_comment == ""
+          ? _c("div", {}, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.answer.content,
+                    expression: "answer.content"
+                  }
+                ],
+                attrs: { type: "text", placeholder: "返信を入力する" },
+                domProps: { value: _vm.answer.content },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.answer, "content", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "btn btn-primary",
+                  on: { click: _vm.createOpeningComment }
+                },
+                [_vm._v("送信する")]
+              )
+            ])
+          : _vm.question.interviewer_comment == ""
+          ? _c("div", {}, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.answer.content,
+                    expression: "answer.content"
+                  }
+                ],
+                attrs: {
+                  type: "text",
+                  placeholder: "記事のコメントを入力する"
+                },
+                domProps: { value: _vm.answer.content },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.answer, "content", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "btn btn-primary",
+                  on: { click: _vm.createInterviewerComment }
+                },
+                [_vm._v("送信する")]
+              )
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-2" }, [
@@ -10092,9 +10333,44 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-xs-8 border p-4" }, [
-        _c("h1", { staticClass: "h5 mb-4" }, [
-          _vm._v("\n                " + _vm._s(_vm.content) + "\n            ")
-        ])
+        _vm.content
+          ? _c("h1", { staticClass: "h5 mb-4" }, [
+              _vm._v(
+                "\n                " + _vm._s(_vm.content) + "\n            "
+              )
+            ])
+          : _c("div", { staticClass: "row d-flex justify-content-center" }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.comment,
+                    expression: "comment"
+                  }
+                ],
+                staticClass: "col-11",
+                attrs: { type: "text", placeholder: "お礼を書く" },
+                domProps: { value: _vm.comment },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.comment = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "col-2 offset-9 mt-4 btn btn-primary",
+                  on: { click: _vm.createComment }
+                },
+                [_vm._v("送信する")]
+              )
+            ])
       ])
     ])
   ])
@@ -10324,17 +10600,20 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("QuestionBox", {
-        attrs: { content: _vm.question.content, user: _vm.user }
+        attrs: {
+          content: _vm.question.content,
+          question: _vm.question,
+          user: _vm.user
+        }
       }),
       _vm._v(" "),
-      _vm.question.opening_comment
-        ? _c("AnswerBox", {
-            attrs: {
-              content: _vm.question.opening_comment,
-              interviewer: _vm.interviewer
-            }
-          })
-        : _vm._e(),
+      _c("AnswerBox", {
+        attrs: {
+          content: _vm.question.opening_comment,
+          question: _vm.question,
+          interviewer: _vm.interviewer
+        }
+      }),
       _vm._v(" "),
       _vm.question.opening_comment
         ? _c("ArticleBox", {
@@ -10345,18 +10624,23 @@ var render = function() {
           })
         : _vm._e(),
       _vm._v(" "),
-      _vm.question.interviewer_comment
+      _vm.question.opening_comment
         ? _c("AnswerBox", {
             attrs: {
               content: _vm.question.interviewer_comment,
+              question: _vm.question,
               interviewer: _vm.interviewer
             }
           })
         : _vm._e(),
       _vm._v(" "),
-      _vm.question.questioner_comment
+      _vm.question.interviewer_comment
         ? _c("QuestionBox", {
-            attrs: { content: _vm.question.questioner_comment, user: _vm.user }
+            attrs: {
+              content: _vm.question.questioner_comment,
+              question: _vm.question,
+              user: _vm.user
+            }
           })
         : _vm._e()
     ],

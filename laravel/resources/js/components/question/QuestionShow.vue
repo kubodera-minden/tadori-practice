@@ -8,11 +8,11 @@
         </div>
     </div>
 
-    <QuestionBox :content="question.content" :user="user"></QuestionBox>
-    <AnswerBox v-if="question.opening_comment" :content="question.opening_comment" :interviewer="interviewer"></AnswerBox>
+    <QuestionBox :content="question.content" :question="question" :user="user"></QuestionBox>
+    <AnswerBox :content="question.opening_comment" :question="question" :interviewer="interviewer"></AnswerBox>
     <ArticleBox v-if="question.opening_comment" :content="articleContent" :product_id="article.product_id"></ArticleBox>
-    <AnswerBox v-if="question.interviewer_comment" :content="question.interviewer_comment" :interviewer="interviewer"></AnswerBox>
-    <QuestionBox v-if="question.questioner_comment" :content="question.questioner_comment" :user="user"></QuestionBox>
+    <AnswerBox v-if="question.opening_comment" :content="question.interviewer_comment" :question="question" :interviewer="interviewer"></AnswerBox>
+    <QuestionBox v-if="question.interviewer_comment" :content="question.questioner_comment" :question="question" :user="user"></QuestionBox>
 
 </div>
 

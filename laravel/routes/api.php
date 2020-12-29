@@ -31,6 +31,7 @@ Route::group(['middleware' => ['api']], function(){
 
 Route::group(['middleware' => ['api']], function(){
     Route::resource('questions', 'App\Http\Controllers\Api\QuestionController',['except' => ['create', 'edit']]);
+    Route::post('update_question/{id}', [App\Http\Controllers\Api\QuestionController::class, 'update_question']);
 });
 
 Route::group(['middleware' => ['api']], function(){
