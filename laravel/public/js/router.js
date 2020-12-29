@@ -2321,6 +2321,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -10024,10 +10025,19 @@ var render = function() {
               attrs: { to: { name: "ArticleShow", params: { id: article.id } } }
             },
             [
-              _c("img", {
-                staticClass: "img-thumbnail col-12",
-                attrs: { src: "storage/thumbnail/" + article.thumbnail_path }
-              }),
+              article.thumbnail_path
+                ? _c("img", {
+                    staticClass: "img-thumbnail col-12",
+                    attrs: {
+                      src: "storage/thumbnail/" + article.thumbnail_path
+                    }
+                  })
+                : _c("img", {
+                    staticClass: "img-thumbnail col-12",
+                    attrs: {
+                      src: "storage/minden_logo.png" + article.thumbnail_path
+                    }
+                  }),
               _vm._v(" "),
               _c("h2", [_vm._v(" " + _vm._s(article.title) + " ")]),
               _vm._v(" "),

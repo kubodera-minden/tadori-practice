@@ -24,7 +24,7 @@
       <a class="twitter col-1" href="https://twitter.com/minden_PR"></a>
     </div>
     <div class="category-container row d-flex justify-content-center mb-5">
-      <a href="/create" class="col-3">新規投稿</a>
+      <a href="/#/articles/create">新規投稿</a>
       <a href="/#/products" class="col-3">顔の見える商品</a>
       <a href="/#/questions" class="col-3">みんなのハテナ</a>
       <a href="/#/questions/create" class="col-3">質問する</a>

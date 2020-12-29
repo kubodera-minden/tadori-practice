@@ -7,7 +7,8 @@
                 v-for="(article,$index) in articles" :key="$index"
                 class="col-sm-10 col-md-6 col-xl-4"
             >
-                <img :src="'storage/thumbnail/' + article.thumbnail_path" class="img-thumbnail col-12">
+                <img :src="'storage/thumbnail/' + article.thumbnail_path" v-if="article.thumbnail_path" class="img-thumbnail col-12">
+                <img :src="'storage/minden_logo.png' + article.thumbnail_path" v-else class="img-thumbnail col-12">
                 <h2> {{article.title}} </h2>
                 <h3> {{article.date}} </h3>
             </router-link>
