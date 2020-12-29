@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import UserEdit from "./components/user/UserEdit.vue";
  
 import ArticleIndex from "./components/article/ArticleIndex.vue";
+import ArticleCreate from "./components/article/ArticleCreate.vue";
 import ArticleShow from "./components/article/ArticleShow.vue";
 import ArticleNew from "./components/article/ArticleNew.vue";
 
@@ -30,6 +31,11 @@ const router = new VueRouter({
             path: "/",
             name: "index",
             component: ArticleIndex
+        },
+        {
+            path: "/articles/create",
+            name: "ArticleCreate",
+            component: ArticleCreate
         },
         {
             path: '/articles/:id(\\d+)',

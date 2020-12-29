@@ -29,7 +29,7 @@ class ArticleController extends Controller
     //   $path = $request->file('image')->store('public/thumbnail');  //imageをstorage/public/thumbnailディレクトリに保存。https://qiita.com/10mi8o/items/ce9c875e736c7b1d2498
     //   $article->thumbnail_path = basename($path); //そのままだと、フルパスがDBに格納されてしまうのでbasenameでファイル名を取り出してから格納。
       $article->save();
-      return redirect('api/articles');
+      return $article->id;
     }
 
     public function show($id)

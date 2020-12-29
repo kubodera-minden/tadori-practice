@@ -7,7 +7,7 @@
   <a href="/#/" class="navbar-brand">
     <img src="{{ asset('storage/enect_img/enect_logo.png') }}" class="">
   </a>
-  <a href="/create">新規投稿</a>
+  <a href="/#/articles/create">新規投稿</a>
   <a href="/#/products">顔の見える商品</a>
   <a href="/#/questions">みんなのハテナ</a>
   <a href="/#/questions/create">質問する</a>
