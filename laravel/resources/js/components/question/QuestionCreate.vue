@@ -1,16 +1,27 @@
 <template>
 <div class="container ops-main">
-    <div class="row">
-            <div class="col-12">
-                <input v-model="question.title" class="" type="text" placeholder="タイトルを入力する">
-            </div>
-            <div class="col-12">
-                <textarea v-model="question.content" class="" type="text" placeholder="質問内容を入力する"></textarea>
-            </div>
-            <div class="col-12">
-                <button v-if="this.question.title && question.content" @click="createQuestion">質問する</button>
-            </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-12">
+            <h1>質問する</h1>
         </div>
+        <div class="col-10 my-5">
+            <h2 class="col-12 p-0">タイトル</h2>
+            <input v-model="question.title" class="w-100" type="text" placeholder="タイトルを入力する">
+        </div>
+    </div>
+    
+    <div class="row d-flex justify-content-center">
+        <div class="col-10 my-5">
+            <textarea v-model="question.content" class="w-100" type="text" placeholder="質問内容を入力する"></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <button class="col-3 offset-8 btn btn-primary" @click="createQuestion" v-if="question.title && question.content">送信</button>
+        <button class="col-3 offset-8 btn btn-secondary" v-else>送信</button>
+    </div>
+
 </div>
 
 </template>
@@ -45,7 +56,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-input, textarea {
-    width: 70%;
+textarea {
+    height: 30em;
 }
 </style>

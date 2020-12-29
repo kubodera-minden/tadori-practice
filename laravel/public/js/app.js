@@ -3252,6 +3252,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   data: function data() {
@@ -11959,7 +11970,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "input[data-v-71a43020], textarea[data-v-71a43020] {\n  width: 70%;\n}", ""]);
+exports.push([module.i, "textarea[data-v-71a43020] {\n  height: 30em;\n}", ""]);
 
 // exports
 
@@ -45908,8 +45919,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container ops-main" }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
+    _c("div", { staticClass: "row d-flex justify-content-center" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-10 my-5" }, [
+        _c("h2", { staticClass: "col-12 p-0" }, [_vm._v("タイトル")]),
+        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -45919,6 +45934,7 @@ var render = function() {
               expression: "question.title"
             }
           ],
+          staticClass: "w-100",
           attrs: { type: "text", placeholder: "タイトルを入力する" },
           domProps: { value: _vm.question.title },
           on: {
@@ -45930,9 +45946,11 @@ var render = function() {
             }
           }
         })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-12" }, [
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row d-flex justify-content-center" }, [
+      _c("div", { staticClass: "col-10 my-5" }, [
         _c("textarea", {
           directives: [
             {
@@ -45942,6 +45960,7 @@ var render = function() {
               expression: "question.content"
             }
           ],
+          staticClass: "w-100",
           attrs: { type: "text", placeholder: "質問内容を入力する" },
           domProps: { value: _vm.question.content },
           on: {
@@ -45953,19 +45972,35 @@ var render = function() {
             }
           }
         })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-12" }, [
-        this.question.title && _vm.question.content
-          ? _c("button", { on: { click: _vm.createQuestion } }, [
-              _vm._v("質問する")
-            ])
-          : _vm._e()
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _vm.question.title && _vm.question.content
+        ? _c(
+            "button",
+            {
+              staticClass: "col-3 offset-8 btn btn-primary",
+              on: { click: _vm.createQuestion }
+            },
+            [_vm._v("送信")]
+          )
+        : _c("button", { staticClass: "col-3 offset-8 btn btn-secondary" }, [
+            _vm._v("送信")
+          ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12" }, [
+      _c("h1", [_vm._v("質問する")])
+    ])
+  }
+]
 render._withStripped = true
 
 
