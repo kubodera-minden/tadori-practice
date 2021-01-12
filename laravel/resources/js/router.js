@@ -4,6 +4,8 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 import UserEdit from "./components/user/UserEdit.vue";
+import Home from "./components/user/Home.vue";
+import Login from "./components/user/Login.vue";
  
 import ArticleIndex from "./components/article/ArticleIndex.vue";
 import ArticleCreate from "./components/article/ArticleCreate.vue";
@@ -22,6 +24,17 @@ import ProductShow from "./components/product/ProductShow.vue";
 const router = new VueRouter({
     mode: "hash",
     routes: [
+        {
+            path: '/home',
+            name: 'Home',
+            component: Home,
+            meta: { requiresAuth: true }
+        },
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login
+        },
         {
             path: '/users/:id(\\d+)',
             name: 'UserEdit',
@@ -78,6 +91,21 @@ const router = new VueRouter({
             component: ProductShow
         },
     ]
+});
+
+router.beforeEach((to,from,next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (state.isLogin === false) {
+            next({
+                path: '/login',
+                query: { redirect: to.fullPath }
+            })
+        } else {
+            next()
+        }
+    } else {
+        next();
+    }
 });
  
 export default router;

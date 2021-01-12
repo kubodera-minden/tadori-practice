@@ -10,7 +10,10 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vue from "vue";
+import store from "./store"; //1/12 https://www.webopixel.net/php/1444.html
 import router from "./router";
+
+window.state = store.state;
 
 /**
  * The following block of code may be used to automatically register your
