@@ -20,10 +20,7 @@ class QuestionController extends Controller
       $questions = new Question;
       $questions->title = $request->title;
       $questions->content = $request->content;
-      // $questions->opening_comment = $request->opening_comment;
-      // $questions->interviewee_name = $request->interviewee_name;
-      // $questions->interviewer_comment = $request->interviewer_comment;
-      // $questions->questioner_comment = $request->questioner_comment;
+      $questions->user_id = $request->user_id;
       $questions->save();
       return $questions->id;
     }

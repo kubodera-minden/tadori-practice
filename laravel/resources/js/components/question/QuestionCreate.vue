@@ -42,11 +42,12 @@ export default {
     },
     async mounted() {
         console.log('QuestionCreate mounted.')
+        console.log(current_user)
     },
     methods: {
         createQuestion: async function() {
             await axios
-                .post(`/api/questions`,{title: this.question.title,content: this.question.content})
+                .post(`/api/questions`,{title: this.question.title,content: this.question.content,user_id: current_user.id})
                 .then(response => (
                     this.$router.push({ name: 'QuestionShow', params: { id: response.data } })
                 ))

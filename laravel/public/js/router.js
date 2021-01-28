@@ -3224,8 +3224,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               console.log('QuestionCreate mounted.');
+              console.log(current_user);
 
-            case 1:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -3245,7 +3246,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 2;
                 return axios.post("/api/questions", {
                   title: this.question.title,
-                  content: this.question.content
+                  content: this.question.content,
+                  user_id: current_user.id
                 }).then(function (response) {
                   return _this.$router.push({
                     name: 'QuestionShow',
@@ -3495,7 +3497,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.post('/api/auth/me').then(function (res) {
       _this.user = res.data;
-      current_user = _this.user.id;
+      current_user.id = _this.user.id;
     })["catch"](function (error) {
       _this.isError = true;
     });

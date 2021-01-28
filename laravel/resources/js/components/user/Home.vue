@@ -40,7 +40,7 @@
         created() {
             axios.post('/api/auth/me').then(res => {
                 this.user = res.data;
-                current_user = this.user.id;
+                current_user.id = this.user.id;
             }).catch(error => {
                 this.isError = true;
             });
