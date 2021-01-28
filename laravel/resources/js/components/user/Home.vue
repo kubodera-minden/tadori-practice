@@ -19,6 +19,11 @@
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
+                <th>Tadorist権限</th>
+                <td v-if="user.interviewer_authority == 0">なし</td>
+                <td v-if="user.interviewer_authority == 1">あり</td>
+            </tr>
+            <tr>
                 <th>登録日</th>
                 <td>{{ user.created_at }}</td>
             </tr>

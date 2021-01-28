@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('image_path');
+            $table->boolean('interviewer_authority');
         });
     }
 

@@ -3482,6 +3482,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11152,6 +11157,18 @@ var render = function() {
         _c("th", [_vm._v("メール")]),
         _vm._v(" "),
         _c("td", [_vm._v(_vm._s(_vm.user.email))])
+      ]),
+      _vm._v(" "),
+      _c("tr", [
+        _c("th", [_vm._v("Tadorist権限")]),
+        _vm._v(" "),
+        _vm.user.interviewer_authority == 0
+          ? _c("td", [_vm._v("なし")])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.user.interviewer_authority == 1
+          ? _c("td", [_vm._v("あり")])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("tr", [
