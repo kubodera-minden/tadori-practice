@@ -14,6 +14,7 @@ import store from "./store"; //1/12 https://www.webopixel.net/php/1444.html
 import router from "./router";
 
 window.state = store.state;
+window.current_user = store.current_user;
 
 /**
  * The following block of code may be used to automatically register your

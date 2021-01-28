@@ -10,7 +10,6 @@ import Login from "./components/user/Login.vue";
 import ArticleIndex from "./components/article/ArticleIndex.vue";
 import ArticleCreate from "./components/article/ArticleCreate.vue";
 import ArticleShow from "./components/article/ArticleShow.vue";
-import ArticleNew from "./components/article/ArticleNew.vue";
 
 import QuestionIndex from "./components/question/QuestionIndex.vue";
 import QuestionShow from "./components/question/QuestionShow.vue";
@@ -48,17 +47,13 @@ const router = new VueRouter({
         {
             path: "/articles/create",
             name: "ArticleCreate",
-            component: ArticleCreate
+            component: ArticleCreate,
+            meta: { requiresAuth: true }
         },
         {
             path: '/articles/:id(\\d+)',
             name: 'ArticleShow',
             component: ArticleShow
-        },
-        {
-            path: '/articles/new',
-            name: 'ArticleNew',
-            component: ArticleNew
         },
         {
             path: '/questions',
@@ -73,7 +68,8 @@ const router = new VueRouter({
         {
             path: '/questions/create',
             name: 'QuestionCreate',
-            component: QuestionCreate
+            component: QuestionCreate,
+            meta: { requiresAuth: true }
         },
         {
             path: '/interviewers/:id(\\d+)',
