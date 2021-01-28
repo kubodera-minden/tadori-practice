@@ -5,6 +5,9 @@
         <form @submit.prevent="logout">
             <button type="submit" class="btn btn-primary">ログアウト</button>
         </form>
+        <div class="col-5 d-flex justify-content-center">
+            <img :src="'storage/user_img/' + user.image_path" width="300" />
+        </div>
         <table>
             <tr>
                 <th>ID</th>
@@ -45,7 +48,7 @@
         created() {
             axios.post('/api/auth/me').then(res => {
                 this.user = res.data;
-                current_user.id = this.user.id;
+                current_user = res.data;
             }).catch(error => {
                 this.isError = true;
             });

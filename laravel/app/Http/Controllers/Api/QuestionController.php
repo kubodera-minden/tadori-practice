@@ -47,6 +47,7 @@ class QuestionController extends Controller
     public function update_question(Request $request, $id)
     {
       $question = Question::find($id);
+      $question->interviewer_id = $request->interviewer_id;
       $question->opening_comment = $request->opening_comment;
       $question->interviewer_comment = $request->interviewer_comment;
       $question->questioner_comment = $request->questioner_comment;

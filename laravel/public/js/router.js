@@ -2972,6 +2972,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: ['question', 'interviewer', 'content'],
   data: function data() {
     return {
+      current_user: current_user,
       answer: {
         content: ""
       }
@@ -3002,7 +3003,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 2;
                 return axios.post("/api/update_question/".concat(this.question.id), {
                   opening_comment: this.answer.content,
-                  interviewer_comment: this.question.interviewer_comment
+                  interviewer_comment: this.question.interviewer_comment,
+                  interviewer_id: this.question.interviewer_id
                 }).then(function (response) {
                   return _this.$router.go({
                     path: _this.$router.currentRoute.path,
@@ -3035,7 +3037,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context3.next = 2;
                 return axios.post("/api/update_question/".concat(this.question.id), {
                   interviewer_comment: this.answer.content,
-                  opening_comment: this.question.opening_comment
+                  opening_comment: this.question.opening_comment,
+                  interviewer_id: this.question.interviewer_id
                 }).then(function (response) {
                   return _this2.$router.go({
                     path: _this2.$router.currentRoute.path,
@@ -3105,7 +3108,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: ['question', 'user', 'content'],
   data: function data() {
     return {
-      comment: ''
+      comment: '',
+      current_user: current_user
     };
   },
   mounted: function mounted() {
@@ -3134,7 +3138,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post("/api/update_question/".concat(this.question.id), {
                   questioner_comment: this.comment,
                   opening_comment: this.question.opening_comment,
-                  interviewer_comment: this.question.interviewer_comment
+                  interviewer_comment: this.question.interviewer_comment,
+                  interviewer_id: this.question.interviewer_id
                 }).then(function (response) {
                   return _this.$router.go({
                     path: _this.$router.currentRoute.path,
@@ -3383,6 +3388,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 
 
 
@@ -3398,7 +3406,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       user: [],
       interviewer: [],
       article: [],
-      articleContent: ""
+      articleContent: "",
+      current_user: current_user
     };
   },
   mounted: function mounted() {
@@ -3423,7 +3432,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 5:
               _context.next = 7;
-              return axios.get("/api/interviewers/".concat(_this.question.interviewer_id)).then(function (response) {
+              return axios.get("/api/users/".concat(_this.question.interviewer_id)).then(function (response) {
                 return _this.interviewer = response.data;
               });
 
@@ -3440,6 +3449,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee);
     }))();
+  },
+  methods: {
+    LinkToQuestion: function LinkToQuestion() {
+      var _this2 = this;
+
+      axios.post("/api/update_question/".concat(this.question.id), {
+        title: this.question.title,
+        content: this.question.content,
+        user_id: this.question.user_id,
+        interviewer_id: current_user.id
+      }).then(function (response) {
+        return _this2.question.interviewer_id = current_user.id;
+      });
+    }
   }
 });
 
@@ -3454,6 +3477,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -3502,7 +3528,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.post('/api/auth/me').then(function (res) {
       _this.user = res.data;
-      current_user.id = _this.user.id;
+      current_user = res.data;
     })["catch"](function (error) {
       _this.isError = true;
     });
@@ -10595,7 +10621,8 @@ var render = function() {
                 "\n                " + _vm._s(_vm.content) + "\n            "
               )
             ])
-          : _vm.question.opening_comment == ""
+          : _vm.question.opening_comment == "" &&
+            _vm.question.interviewer_id == _vm.current_user.id
           ? _c("div", {}, [
               _c("textarea", {
                 directives: [
@@ -10627,7 +10654,8 @@ var render = function() {
                 [_vm._v("送信する")]
               )
             ])
-          : _vm.question.interviewer_comment == ""
+          : _vm.question.interviewer_comment == "" &&
+            _vm.question.interviewer_id == _vm.current_user.id
           ? _c("div", {}, [
               _c("textarea", {
                 directives: [
@@ -10668,9 +10696,7 @@ var render = function() {
       _c("div", { staticClass: "col-2" }, [
         _c("img", {
           staticClass: "img-thumbnail rounded-circle",
-          attrs: {
-            src: "/storage/interviewer_img/" + _vm.interviewer.image_path
-          }
+          attrs: { src: "/storage/user_img/" + _vm.interviewer.image_path }
         }),
         _vm._v(" "),
         _c(
@@ -10681,10 +10707,7 @@ var render = function() {
               "router-link",
               {
                 attrs: {
-                  to: {
-                    name: "InterviewerShow",
-                    params: { id: _vm.interviewer.id }
-                  }
+                  to: { name: "UserEdit", params: { id: _vm.interviewer.id } }
                 }
               },
               [_vm._v(_vm._s(_vm.interviewer.name))]
@@ -10749,7 +10772,8 @@ var render = function() {
                 "\n                " + _vm._s(_vm.content) + "\n            "
               )
             ])
-          : _c("div", { staticClass: "row d-flex justify-content-center" }, [
+          : this.question.user_id == _vm.current_user.id
+          ? _c("div", { staticClass: "row d-flex justify-content-center" }, [
               _c("textarea", {
                 directives: [
                   {
@@ -10781,6 +10805,7 @@ var render = function() {
                 [_vm._v("送信する")]
               )
             ])
+          : _vm._e()
       ])
     ])
   ])
@@ -11041,13 +11066,27 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("AnswerBox", {
-        attrs: {
-          content: _vm.question.opening_comment,
-          question: _vm.question,
-          interviewer: _vm.interviewer
-        }
-      }),
+      _vm.question.interviewer_id == 0 &&
+      _vm.current_user.interviewer_authority == 1
+        ? _c(
+            "div",
+            {
+              staticClass: "btn btn-primary",
+              on: { click: _vm.LinkToQuestion }
+            },
+            [_vm._v("この質問をたどる")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.question.interviewer_id
+        ? _c("AnswerBox", {
+            attrs: {
+              content: _vm.question.opening_comment,
+              question: _vm.question,
+              interviewer: _vm.interviewer
+            }
+          })
+        : _vm._e(),
       _vm._v(" "),
       _vm.question.opening_comment
         ? _c("ArticleBox", {
@@ -11139,6 +11178,12 @@ var render = function() {
         )
       ]
     ),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-5 d-flex justify-content-center" }, [
+      _c("img", {
+        attrs: { src: "storage/user_img/" + _vm.user.image_path, width: "300" }
+      })
+    ]),
     _vm._v(" "),
     _c("table", [
       _c("tr", [
@@ -27728,14 +27773,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./resources/js/components/user/Home.vue ***!
   \***********************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Home_vue_vue_type_template_id_1b29d588___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=1b29d588& */ "./resources/js/components/user/Home.vue?vue&type=template&id=1b29d588&");
 /* harmony import */ var _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home.vue?vue&type=script&lang=js& */ "./resources/js/components/user/Home.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -27765,7 +27811,7 @@ component.options.__file = "resources/js/components/user/Home.vue"
 /*!************************************************************************!*\
   !*** ./resources/js/components/user/Home.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

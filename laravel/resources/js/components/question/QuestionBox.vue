@@ -11,7 +11,7 @@
                 <h1 class="h5 mb-4" v-if="content">
                     {{ content }}
                 </h1>
-                <div class="row d-flex justify-content-center" v-else>
+                <div class="row d-flex justify-content-center" v-else-if="this.question.user_id == current_user.id">
                     <textarea v-model="comment" class="col-11" type="text" placeholder="お礼を書く"></textarea>
                     <div @click="createComment" class="col-2 offset-9 mt-4 btn btn-primary">送信する</div>
                 </div>
@@ -30,6 +30,7 @@ export default {
     data: function () {
         return {
             comment: '',
+            current_user: current_user
         }
     },
     async mounted() {
@@ -37,7 +38,7 @@ export default {
     methods: {
         createComment: async function() {
             await axios
-                .post(`/api/update_question/${this.question.id}`,{questioner_comment:this.comment,opening_comment: this.question.opening_comment,interviewer_comment: this.question.interviewer_comment})
+                .post(`/api/update_question/${this.question.id}`,{questioner_comment:this.comment,opening_comment: this.question.opening_comment,interviewer_comment: this.question.interviewer_comment,interviewer_id: this.question.interviewer_id})
                 .then(response => (
                     this.$router.go({path: this.$router.currentRoute.path, force: true})
                 ))
