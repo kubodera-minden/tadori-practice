@@ -11,8 +11,6 @@
 </template>
  
 <script>
-import store from '../../store/index'
-
 export default {
     data () {
         return {
@@ -26,7 +24,7 @@ export default {
     },
     methods: {
         login() {
-            store.dispatch('auth/login', {
+            this.$store.dispatch('auth/login', {
                 email: this.email,
                 password: this.password
             }).then(res => {

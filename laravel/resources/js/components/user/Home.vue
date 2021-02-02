@@ -35,35 +35,33 @@
 </template>
  
 <script>
-import store from '../../store/index'
-
-    export default {
-        data () {
-            return {
-                isError: false,
-                user: {}
-            }
-        },
-        mounted() {
-            console.log('Home mounted.')
-        },
-        created() {
-            axios.post('/api/auth/me').then(res => {
-                this.user = res.data;
-            }).catch(error => {
-                this.isError = true;
+export default {
+    data () {
+        return {
+            isError: false,
+            user: {}
+        }
+    },
+    mounted() {
+        console.log('Home mounted.')
+    },
+    created() {
+        axios.post('/api/auth/me').then(res => {
+            this.user = res.data;
+        }).catch(error => {
+            this.isError = true;
+        });
+    },
+    methods: {
+        logout() {
+            this.$store.dispatch('auth/logout').then(res => {
+                if (res === true) {
+                    this.$router.push({path: '/'});
+                } else {
+                    this.isError = true;
+                }
             });
-        },
-        methods: {
-            logout() {
-               store.dispatch('auth/logout').then(res => {
-                    if (res === true) {
-                        this.$router.push({path: '/'});
-                    } else {
-                        this.isError = true;
-                    }
-                });
-            }
         }
     }
+}
 </script>

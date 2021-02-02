@@ -3477,7 +3477,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/index */ "./resources/js/store/index.js");
 //
 //
 //
@@ -3514,7 +3513,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3538,7 +3536,7 @@ __webpack_require__.r(__webpack_exports__);
     logout: function logout() {
       var _this2 = this;
 
-      _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('auth/logout').then(function (res) {
+      this.$store.dispatch('auth/logout').then(function (res) {
         if (res === true) {
           _this2.$router.push({
             path: '/'
@@ -3562,7 +3560,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/index */ "./resources/js/store/index.js");
 //
 //
 //
@@ -3575,7 +3572,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3591,7 +3587,7 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
 
-      _store_index__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch('auth/login', {
+      this.$store.dispatch('auth/login', {
         email: this.email,
         password: this.password
       }).then(function (res) {
