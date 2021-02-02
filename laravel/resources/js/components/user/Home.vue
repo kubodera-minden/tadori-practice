@@ -35,6 +35,8 @@
 </template>
  
 <script>
+import store from '../../store/index'
+
     export default {
         data () {
             return {
@@ -48,19 +50,18 @@
         created() {
             axios.post('/api/auth/me').then(res => {
                 this.user = res.data;
-                current_user = res.data;
             }).catch(error => {
                 this.isError = true;
             });
         },
         methods: {
             logout() {
-                axios.post('/api/auth/logout', {
-                }).then(res => {
-                    state.isLogin = false;
-                    this.$router.push({path: '/'});
-                }).catch(error => {
-                    this.isError = true;
+               store.dispatch('auth/logout').then(res => {
+                    if (res === true) {
+                        this.$router.push({path: '/'});
+                    } else {
+                        this.isError = true;
+                    }
                 });
             }
         }

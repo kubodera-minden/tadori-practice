@@ -11,7 +11,7 @@
 </template>
  
 <script>
-import axios from 'axios'
+import store from '../../store/index'
 
 export default {
     data () {
@@ -26,17 +26,16 @@ export default {
     },
     methods: {
         login() {
-            axios.post('/api/auth/login', {
+            store.dispatch('auth/login', {
                 email: this.email,
                 password: this.password
             }).then(res => {
-                const token = res.data.access_token;
-                axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-                state.isLogin = true;
-                this.$router.push({path: '/home'});
-            }).catch(error => {
-                this.isError = true;
-            });
+                if (res === true) {
+                    this.$router.push({path: '/home'});
+                } else {
+                    this.isError = true;
+                };
+            })
         }
     }
 }
