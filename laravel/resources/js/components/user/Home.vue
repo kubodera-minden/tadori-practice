@@ -39,18 +39,17 @@ export default {
     data () {
         return {
             isError: false,
-            user: {}
         }
     },
     mounted() {
-        console.log('Home mounted.')
+        console.log('Home mounted.');
     },
     created() {
-        axios.post('/api/auth/me').then(res => {
-            this.user = res.data;
-        }).catch(error => {
-            this.isError = true;
-        });
+    },
+    computed: {
+        user: function() {
+            return this.$store.state.auth.currentUser;
+        }
     },
     methods: {
         logout() {

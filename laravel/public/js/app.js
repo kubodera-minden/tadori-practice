@@ -3549,33 +3549,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      isError: false,
-      user: {}
+      isError: false
     };
   },
   mounted: function mounted() {
     console.log('Home mounted.');
   },
-  created: function created() {
-    var _this = this;
-
-    axios.post('/api/auth/me').then(function (res) {
-      _this.user = res.data;
-    })["catch"](function (error) {
-      _this.isError = true;
-    });
+  created: function created() {},
+  computed: {
+    user: function user() {
+      return this.$store.state.auth.currentUser;
+    }
   },
   methods: {
     logout: function logout() {
-      var _this2 = this;
+      var _this = this;
 
       this.$store.dispatch('auth/logout').then(function (res) {
         if (res === true) {
-          _this2.$router.push({
+          _this.$router.push({
             path: '/'
           });
         } else {
-          _this2.isError = true;
+          _this.isError = true;
         }
       });
     }
@@ -3625,8 +3621,14 @@ __webpack_require__.r(__webpack_exports__);
         password: this.password
       }).then(function (res) {
         if (res === true) {
-          _this.$router.push({
-            path: '/home'
+          _this.$store.dispatch('auth/currentUserSearch').then(function (res) {
+            if (res === true) {
+              _this.$router.push({
+                path: '/home'
+              });
+            } else {
+              _this.isError = true;
+            }
           });
         } else {
           _this.isError = true;
@@ -64846,7 +64848,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   strict: true,
   plugins: [Object(vuex_persistedstate__WEBPACK_IMPORTED_MODULE_2__["default"])({
     key: 'TadoriApp',
-    paths: ['auth.token'],
+    paths: ['auth.token', 'auth.currentUser'],
     storage: window.sessionStorage
   })]
 }));
@@ -64871,7 +64873,8 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var state = {
-  token: ''
+  token: '',
+  currentUser: ''
 };
 var mutations = {
   login: function login(state, payload) {
@@ -64879,6 +64882,9 @@ var mutations = {
   },
   logout: function logout(state) {
     state.token = null;
+  },
+  currentUserSearch: function currentUserSearch(state, payload) {
+    state.currentUser = payload;
   }
 };
 var getters = {
@@ -64945,6 +64951,34 @@ var actions = {
           }
         }
       }, _callee2);
+    }))();
+  },
+  currentUserSearch: function currentUserSearch(_ref3) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3() {
+      var commit;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              commit = _ref3.commit;
+              _context3.next = 3;
+              return axios.post('/api/auth/me').then(function (res) {
+                var user = res.data;
+                commit('currentUserSearch', user);
+                return true;
+              })["catch"](function (error) {
+                return error.response;
+              });
+
+            case 3:
+              return _context3.abrupt("return", _context3.sent);
+
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
     }))();
   }
 };

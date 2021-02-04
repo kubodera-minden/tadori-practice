@@ -1,5 +1,6 @@
 const state = {
-    token: ''
+    token: '',
+    currentUser: ''
 };
 
 const mutations = {
@@ -8,13 +9,16 @@ const mutations = {
     },
     logout (state) {
         state.token = null;
+    },
+    currentUserSearch (state, payload) {
+        state.currentUser = payload;
     }
 };
 
 const getters = {
     isLogin (state) {
         return state.token ? true : false;
-    }
+    },
 };
 
 const actions = {
@@ -35,6 +39,15 @@ const actions = {
         return await axios.post('/api/auth/logout').then(res => {
             axios.defaults.headers.common['Authorization'] = '';
             commit('logout');
+            return true;
+        }).catch(error => {
+            return error.response;
+        });
+    },
+    async currentUserSearch({ commit }) {
+        return await axios.post('/api/auth/me').then(res => {
+            const user = res.data;
+            commit('currentUserSearch', user);
             return true;
         }).catch(error => {
             return error.response;

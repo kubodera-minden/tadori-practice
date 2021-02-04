@@ -29,7 +29,13 @@ export default {
                 password: this.password
             }).then(res => {
                 if (res === true) {
-                    this.$router.push({path: '/home'});
+                    this.$store.dispatch('auth/currentUserSearch').then(res => {
+                        if (res === true) {
+                            this.$router.push({path: '/home'});
+                        } else {
+                            this.isError = true;
+                        }
+                    })
                 } else {
                     this.isError = true;
                 };

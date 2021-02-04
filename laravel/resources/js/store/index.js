@@ -7,12 +7,12 @@ Vue.use(Vuex);
  
 export default new Vuex.Store({
     modules: {
-        auth
+        auth:auth
     },
     strict: true,
     plugins: [createPersistedState({
         key: 'TadoriApp',
-        paths: ['auth.token'],
+        paths: ['auth.token','auth.currentUser'],
         storage: window.sessionStorage
     })]
 });
