@@ -33,13 +33,17 @@ export default {
   ],
     data: function () {
         return {
-            current_user: current_user,
             answer: {
                 content: "",
             },
         }
     },
     async mounted() {
+    },
+    computed: {
+        current_user: function() {
+            return this.$store.state.auth.currentUser;
+        }
     },
     methods: {
         createOpeningComment: async function() {

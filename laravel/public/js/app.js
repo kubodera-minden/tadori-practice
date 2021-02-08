@@ -3005,7 +3005,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: ['question', 'interviewer', 'content'],
   data: function data() {
     return {
-      current_user: current_user,
       answer: {
         content: ""
       }
@@ -3023,6 +3022,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee);
     }))();
+  },
+  computed: {
+    current_user: function current_user() {
+      return this.$store.state.auth.currentUser;
+    }
   },
   methods: {
     createOpeningComment: function () {
@@ -3141,8 +3145,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: ['question', 'user', 'content'],
   data: function data() {
     return {
-      comment: '',
-      current_user: current_user
+      comment: ''
     };
   },
   mounted: function mounted() {
@@ -3157,6 +3160,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee);
     }))();
+  },
+  computed: {
+    current_user: function current_user() {
+      return this.$store.state.auth.currentUser;
+    }
   },
   methods: {
     createComment: function () {
@@ -3262,15 +3270,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               console.log('QuestionCreate mounted.');
-              console.log(current_user);
 
-            case 2:
+            case 1:
             case "end":
               return _context.stop();
           }
         }
       }, _callee);
     }))();
+  },
+  computed: {
+    current_user: function current_user() {
+      return this.$store.state.auth.currentUser;
+    }
   },
   methods: {
     createQuestion: function () {
@@ -3285,7 +3297,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post("/api/questions", {
                   title: this.question.title,
                   content: this.question.content,
-                  user_id: current_user.id
+                  user_id: this.current_user.id
                 }).then(function (response) {
                   return _this.$router.push({
                     name: 'QuestionShow',
@@ -3439,8 +3451,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       user: [],
       interviewer: [],
       article: [],
-      articleContent: "",
-      current_user: current_user
+      articleContent: "" // current_user: current_user,
+
     };
   },
   mounted: function mounted() {
@@ -3483,6 +3495,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
+  computed: {
+    current_user: function current_user() {
+      return this.$store.state.auth.currentUser;
+    }
+  },
   methods: {
     LinkToQuestion: function LinkToQuestion() {
       var _this2 = this;
@@ -3491,9 +3508,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         title: this.question.title,
         content: this.question.content,
         user_id: this.question.user_id,
-        interviewer_id: current_user.id
+        interviewer_id: this.current_user.id
       }).then(function (response) {
-        return _this2.question.interviewer_id = current_user.id;
+        return _this2.question.interviewer_id = _this2.current_user.id;
       });
     }
   }

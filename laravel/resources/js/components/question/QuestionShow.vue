@@ -40,7 +40,7 @@ export default {
             interviewer: [],
             article: [],
             articleContent: "",
-            current_user: current_user,
+            // current_user: current_user,
         }
     },
     async mounted() {
@@ -58,12 +58,17 @@ export default {
             .get(`/api/articles/${this.question.article_id}`)
             .then(response => (this.article = response.data,this.articleContent = JSON.parse(response.data.content)))
     },
+    computed: {
+        current_user: function() {
+            return this.$store.state.auth.currentUser;
+        }
+    },
     methods: {
       LinkToQuestion: function () {
         axios
-            .post(`/api/update_question/${this.question.id}`,{title: this.question.title,content: this.question.content,user_id: this.question.user_id,interviewer_id: current_user.id})
+            .post(`/api/update_question/${this.question.id}`,{title: this.question.title,content: this.question.content,user_id: this.question.user_id,interviewer_id: this.current_user.id})
             .then(response => (
-                this.question.interviewer_id = current_user.id
+                this.question.interviewer_id = this.current_user.id
             ))
       },
     },

@@ -30,10 +30,14 @@ export default {
     data: function () {
         return {
             comment: '',
-            current_user: current_user
         }
     },
     async mounted() {
+    },
+    computed: {
+        current_user: function() {
+            return this.$store.state.auth.currentUser;
+        }
     },
     methods: {
         createComment: async function() {
