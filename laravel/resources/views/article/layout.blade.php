@@ -11,7 +11,8 @@
   <a href="/#/products">顔の見える商品</a>
   <a href="/#/questions">みんなのハテナ</a>
   <a href="/#/questions/create">質問する</a>
-  <a href="/#/home" class="col-3">マイページ</a>
+  <a href="/#/home">マイページ</a>
+  <a href="/home">ユーザー登録</a>
 </div>
 <div class="body">
   @yield('content')  
