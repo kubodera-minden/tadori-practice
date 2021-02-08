@@ -15,6 +15,9 @@
                     <textarea v-model="comment" class="col-11" type="text" placeholder="お礼を書く"></textarea>
                     <div @click="createComment" class="col-2 offset-9 mt-4 btn btn-primary">送信する</div>
                 </div>
+                <div class="" v-else>
+                    <div>回答をお待ちください</div>
+                </div>
             </div>
         </div>
     </div>
@@ -42,7 +45,7 @@ export default {
     methods: {
         createComment: async function() {
             await axios
-                .post(`/api/update_question/${this.question.id}`,{questioner_comment:this.comment,opening_comment: this.question.opening_comment,interviewer_comment: this.question.interviewer_comment,interviewer_id: this.question.interviewer_id})
+                .post(`/api/update_question/${this.question.id}`,{questioner_comment:this.comment,opening_comment: this.question.opening_comment,interviewer_comment: this.question.interviewer_comment,interviewer_id: this.question.interviewer_id,article_id: this.question.article_id})
                 .then(response => (
                     this.$router.go({path: this.$router.currentRoute.path, force: true})
                 ))

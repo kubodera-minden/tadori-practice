@@ -9,6 +9,7 @@ const mutations = {
     },
     logout (state) {
         state.token = null;
+        state.currentUser = {};
     },
     currentUserSearch (state, payload) {
         state.currentUser = payload;

@@ -51,6 +51,7 @@ class QuestionController extends Controller
       $question->opening_comment = $request->opening_comment;
       $question->interviewer_comment = $request->interviewer_comment;
       $question->questioner_comment = $request->questioner_comment;
+      $question->article_id = $request->article_id;
       $question->save();
       return $id;
     }
