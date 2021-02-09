@@ -15,7 +15,7 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
         // テーブルの初期化
-        DB::table('Products')->truncate();
+        DB::table('products')->truncate();
 
         // サンプルレコードの投入
         DB::table('products')->insert([

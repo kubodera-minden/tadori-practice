@@ -16,7 +16,7 @@ class InterviewersTableSeeder extends Seeder
     public function run()
     {
         // テーブルの初期化
-        DB::table('Interviewers')->truncate();
+        DB::table('interviewers')->truncate();
 
         // サンプルレコードの投入
         DB::table('interviewers')->insert([

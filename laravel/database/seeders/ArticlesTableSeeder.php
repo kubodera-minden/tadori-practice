@@ -15,7 +15,7 @@ class ArticlesTableSeeder extends Seeder
     public function run()
     {
         // テーブルの初期化
-        DB::table('Articles')->truncate();
+        DB::table('articles')->truncate();
 
         // サンプルレコードの投入
         DB::table('articles')->insert([

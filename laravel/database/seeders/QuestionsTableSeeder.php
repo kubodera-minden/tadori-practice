@@ -15,7 +15,7 @@ class QuestionsTableSeeder extends Seeder
     public function run()
     {
         // テーブルの初期化
-        DB::table('Questions')->truncate();
+        DB::table('questions')->truncate();
 
         // サンプルレコードの投入
         DB::table('questions')->insert([

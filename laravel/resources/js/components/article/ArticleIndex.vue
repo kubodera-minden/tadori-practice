@@ -2,6 +2,7 @@
 <div>
     <div class="container">
         <div class="row">
+            <Slideshow />
             <router-link 
                 :to="{ name: 'ArticleShow',params: { id: article.id } }"
                 v-for="(article,$index) in articles" :key="$index"
@@ -20,11 +21,15 @@
 
 <script>
 import axios from 'axios';
+import Slideshow from './Slideshow.vue';
 
 export default {
+    components: { 
+        Slideshow
+    },
     data: function () {
         return {
-        articles: [],
+          articles: [],
         }
     },
 
