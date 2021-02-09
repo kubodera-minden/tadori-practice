@@ -2,11 +2,12 @@
     <div>
         <p v-show="isError">情報の取得に失敗しました。</p>
         <h1>マイページ</h1>
-        <form @submit.prevent="logout">
-            <button type="submit" class="btn btn-primary">ログアウト</button>
-        </form>
         <div class="col-5 d-flex justify-content-center">
             <img :src="'storage/user_img/' + user.image_path" width="300" />
+        </div>
+        <div v-if="user.interviewer_authority == 1">
+            <router-link :to="{ name: 'ArticleCreate' }" class="">記事投稿</router-link>
+            <router-link :to="{ name: 'QuestionCreate' }" class="">質問投稿</router-link>
         </div>
         <table>
             <tr>
@@ -31,6 +32,9 @@
                 <td>{{ user.created_at }}</td>
             </tr>
         </table>
+        <form @submit.prevent="logout">
+            <button type="submit" class="btn btn-primary">ログアウト</button>
+        </form>
     </div>
 </template>
  

@@ -3647,6 +3647,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -11437,30 +11441,27 @@ var render = function() {
     _vm._v(" "),
     _c("h1", [_vm._v("マイページ")]),
     _vm._v(" "),
-    _c(
-      "form",
-      {
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.logout($event)
-          }
-        }
-      },
-      [
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [_vm._v("ログアウト")]
-        )
-      ]
-    ),
-    _vm._v(" "),
     _c("div", { staticClass: "col-5 d-flex justify-content-center" }, [
       _c("img", {
         attrs: { src: "storage/user_img/" + _vm.user.image_path, width: "300" }
       })
     ]),
+    _vm._v(" "),
+    _vm.user.interviewer_authority == 1
+      ? _c(
+          "div",
+          [
+            _c("router-link", { attrs: { to: { name: "ArticleCreate" } } }, [
+              _vm._v("記事投稿")
+            ]),
+            _vm._v(" "),
+            _c("router-link", { attrs: { to: { name: "QuestionCreate" } } }, [
+              _vm._v("質問投稿")
+            ])
+          ],
+          1
+        )
+      : _vm._e(),
     _vm._v(" "),
     _c("table", [
       _c("tr", [
@@ -11498,7 +11499,26 @@ var render = function() {
         _vm._v(" "),
         _c("td", [_vm._v(_vm._s(_vm.user.created_at))])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.logout($event)
+          }
+        }
+      },
+      [
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          [_vm._v("ログアウト")]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = []

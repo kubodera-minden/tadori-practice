@@ -3,16 +3,16 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
-<div class="navbar navbar-dark navbar-fixed-top logo">
+<div class="navbar navbar-dark navbar-fixed-top logo d-flex justify-content-start flex-nowrap">
   <a href="/#/" class="navbar-brand">
-    <img src="{{ asset('storage/enect_img/enect_logo.png') }}" class="">
+    <img src="{{ asset('storage/Tadori_logo.png') }}" class="">
   </a>
-  <a href="/#/articles/create">新規投稿</a>
-  <a href="/#/products">顔の見える商品</a>
-  <a href="/#/questions">みんなのハテナ</a>
-  <a href="/#/questions/create">質問する</a>
-  <a href="/#/home">マイページ</a>
-  <a href="/home">ユーザー登録</a>
+  <div class="w-100 d-flex justify-content-around align-self-center">
+    <a href="/#/products">Select（顔の見える商品）</a>
+    <a href="/#/questions">Research（みんなのはてな）</a>
+    <a href="/#/home">マイページ</a>
+    <a href="/home">ユーザー登録</a>
+  </div>
 </div>
 <div class="body">
   @yield('content')  
