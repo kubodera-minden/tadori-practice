@@ -2583,6 +2583,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -12257,7 +12259,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".slider-outer[data-v-1220ae0c] {\n  position: relative;\n  width: 100%;\n  height: 450px;\n  overflow: hidden;\n  margin: 0 auto 20px;\n  box-shadow: 1px 1px 5px rgba(20, 20, 20, 0.2);\n  border-radius: 8px 8px 15px 15px;\n  background: linear-gradient(to right, red 13.3%, orange 15.3%, orange 27.6%, yellow 29.6%, yellow 41.9%, lime 43.9%, lime 56.2%, aqua 58.2%, aqua 70.5%, blue 72.5%, blue 84.8%, fuchsia 86.8%);\n}\n.slider-inner[data-v-1220ae0c] {\n  position: absolute;\n  width: 100%;\n  height: 450px;\n  margin: 3 0;\n}\n.slide-img[data-v-1220ae0c] {\n  width: 100%;\n  height: 450px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}", ""]);
+exports.push([module.i, ".slider-outer[data-v-1220ae0c] {\n  position: relative;\n  width: 100%;\n  height: 450px;\n  overflow: hidden;\n  margin: 0 auto 20px;\n  box-shadow: 1px 1px 5px rgba(20, 20, 20, 0.2);\n  border-radius: 8px 8px 15px 15px;\n  background: linear-gradient(to right, red 13.3%, orange 15.3%, orange 27.6%, yellow 29.6%, yellow 41.9%, lime 43.9%, lime 56.2%, aqua 58.2%, aqua 70.5%, blue 72.5%, blue 84.8%, fuchsia 86.8%);\n}\n.slider-inner[data-v-1220ae0c] {\n  position: absolute;\n  width: 100%;\n  height: 450px;\n  margin: 3 0;\n}\n.slide-img[data-v-1220ae0c] {\n  width: 100%;\n  height: 450px;\n  -o-object-fit: cover;\n     object-fit: cover;\n}\n.fade-enter-active[data-v-1220ae0c], .fade-leave-active[data-v-1220ae0c] {\n  transition: all 2s ease;\n}\n.fade-enter[data-v-1220ae0c], .fade-leave-to[data-v-1220ae0c] {\n  opacity: 0;\n}", ""]);
 
 // exports
 
@@ -45792,14 +45794,17 @@ var render = function() {
               on: { click: _vm.slideTransition }
             },
             [
-              _vm.current_slide == idx
-                ? _c("img", {
-                    key: _vm.slides[idx].img,
-                    staticClass: "slide-img",
-                    attrs: { src: "storage/" + _vm.slides[idx].img }
-                  })
-                : _vm._e()
-            ]
+              _c("transition", { attrs: { name: "fade" } }, [
+                _vm.current_slide == idx
+                  ? _c("img", {
+                      key: _vm.slides[idx].img,
+                      staticClass: "slide-img",
+                      attrs: { src: "storage/" + _vm.slides[idx].img }
+                    })
+                  : _vm._e()
+              ])
+            ],
+            1
           )
         }),
         0

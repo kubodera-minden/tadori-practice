@@ -3,7 +3,9 @@
     <div id="app">
       <div class="slider-outer">
         <div class="slider-inner" :key="idx" v-for="(slide, idx) in slides" @click="slideTransition">
-            <img class="slide-img" v-if="current_slide == idx" v-bind:src="'storage/' + slides[idx].img" :key="slides[idx].img">
+            <transition name="fade">
+                <img class="slide-img" v-if="current_slide == idx" v-bind:src="'storage/' + slides[idx].img" :key="slides[idx].img">
+            </transition>
         </div>
       </div>
     </div>
@@ -72,5 +74,12 @@ export default {
     width: 100%;
     height: 450px;
     object-fit: cover;
+}
+// アニメーション
+.fade-enter-active, .fade-leave-active {
+    transition: all 2s ease;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
 }
 </style>
