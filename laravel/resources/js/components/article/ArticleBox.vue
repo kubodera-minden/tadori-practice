@@ -1,7 +1,14 @@
 <template>
 <div class="container ops-main">
     <div class="row">
-        <div v-on:click="doEditor(),btnTrigger=!btnTrigger" v-if="btnTrigger" class="col-3 offset-4 btn btn-primary">記事を読む</div>
+        <div v-on:click="doEditor(),
+            btnTrigger=!btnTrigger" 
+            v-if="btnTrigger" 
+            class="col-8 offset-2 btn btn-primary read-more"
+        >
+            Tadoってみる
+        </div>
+
         <div id="codex-editor" class="col-12" />
     </div>
     <product-card :product="product" v-if="!btnTrigger" />
@@ -78,5 +85,9 @@ export default {
 <style lang="scss" scoped>
 .block {
     padding-bottom: 0 !important;
+}
+.read-more {
+    font-size: 70px;
+    border-radius: 15px;
 }
 </style>

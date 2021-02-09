@@ -2072,6 +2072,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -12174,7 +12181,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".block[data-v-55567e59] {\n  padding-bottom: 0 !important;\n}", ""]);
+exports.push([module.i, ".block[data-v-55567e59] {\n  padding-bottom: 0 !important;\n}\n.read-more[data-v-55567e59] {\n  font-size: 70px;\n  border-radius: 15px;\n}", ""]);
 
 // exports
 
@@ -45512,14 +45519,14 @@ var render = function() {
           ? _c(
               "div",
               {
-                staticClass: "col-3 offset-4 btn btn-primary",
+                staticClass: "col-8 offset-2 btn btn-primary read-more",
                 on: {
                   click: function($event) {
                     _vm.doEditor(), (_vm.btnTrigger = !_vm.btnTrigger)
                   }
                 }
               },
-              [_vm._v("記事を読む")]
+              [_vm._v("\n            Tadoってみる\n        ")]
             )
           : _vm._e(),
         _vm._v(" "),
